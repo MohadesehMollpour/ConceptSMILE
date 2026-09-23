@@ -1,0 +1,49 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+build/
+dist/
+
+# Environments and local settings
+.venv/
+venv/
+.env
+.env.*
+!.env.example
+
+# Notebooks and IDEs
+.ipynb_checkpoints/
+.idea/
+.vscode/
+
+# Models, credentials, and local caches
+checkpoints/
+models/
+*.pth
+*.pt
+*.ckpt
+*.safetensors
+*.key
+*.pem
+.cache/
+
+# Data and generated experiment artefacts
+data/raw/
+data/interim/
+data/processed/
+outputs/
+!results/**/README.md
+
+# Documentation build
+site/
+
+# Reviewed compact result records may be tracked; raw reruns remain local.
+results/re_runs/
+.DS_Store
+Thumbs.db
+kaggle.json
