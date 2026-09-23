@@ -1,0 +1,63 @@
+# Exact or directly observed settings from the submitted Qwen2.5-VL notebook.
+provenance:
+  source_notebook: notebooks/legacy/vlm_odir_single_image_experiment.ipynb
+
+dataset:
+  name: ODIR_5K
+  image_relative_path: ODIR_5K/diabetes/image1001.png
+  original_kaggle_path: /kaggle/input/datasets/tanjemahamed/odir5k-classification/datasets/diabetes/image1001.png
+  image_size: [384, 384]
+
+concepts: [blood_vessels, lesion, optic_disc]
+
+vlm:
+  family: Qwen2.5-VL
+  local_directory_name: qwen25vl_3b_local
+  exact_model_id: null
+  revision: null
+  dtype: float16
+  device_map: auto
+  local_files_only: true
+  do_sample: false
+  max_new_tokens: 60
+  confidence_source: generated_yes_no_token_probability
+
+perturbation:
+  method: slic
+  target_segments: 7
+  observed_actual_segments: 7
+  compactness: 18.0
+  sigma: 1.0
+  retina_mask_threshold: 0.05
+  samples: 50
+  unique_vectors: true
+  exclude_all_masked: true
+  seed: 42
+  fill_value: 0
+
+embedding:
+  model: facebook/dinov2-base
+  representation: cls_token
+  device: cpu
+
+locality:
+  cosine_sigma: 0.25
+  wasserstein_sigma: 0.75
+  wasserstein_minmax_normalised: true
+
+surrogate:
+  n_estimators: 200
+  max_depth: 3
+  learning_rate: 0.05
+  subsample: 0.8
+  colsample_bytree: 0.8
+  reg_lambda: 1.0
+  test_size: 0.30
+  repeats: 30
+  seed: 42
+
+attribution:
+  legacy_affected_fraction_threshold: 0.30
+  publication_cell_reference_label: same_score_75th_percentile
+  warning: The final attribution cells derive labels from the evaluated confidence-shift score.
+

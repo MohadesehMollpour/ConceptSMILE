@@ -1,0 +1,62 @@
+# Exact or directly observed settings from the submitted MedSAM notebook.
+provenance:
+  source_notebook: notebooks/legacy/medsam_odir_single_image_experiment.ipynb
+  warning: The uploaded filename says HRF, but the code loads an ODIR mirror image.
+
+dataset:
+  name: ODIR_5K
+  image_relative_path: ODIR_5K/diabetes/image1.png
+  original_kaggle_path: /kaggle/input/datasets/tanjemahamed/odir5k-classification/datasets/diabetes/image1.png
+  resized_long_side: 1024
+
+concepts: [lesion, vessel, optic_disc]
+
+medsam:
+  architecture: vit_b
+  sam_checkpoint_filename: sam_vit_b_01ec64.pth
+  medsam_checkpoint_filename: medsam_vit_b.pth
+  mask_threshold: 0.5
+  checkpoint_revision: null
+  checkpoint_sha256: null
+
+perturbation:
+  method: slic
+  target_segments: 12
+  observed_actual_segments: 6
+  compactness: 10.0
+  sigma: 1.0
+  samples: 50
+  unique_vectors: false
+  exclude_all_masked: true
+  seed: 42
+  fill_value: 0
+
+embedding:
+  source: medsam_image_encoder
+  pooling: global_average
+
+locality:
+  cosine_sigma: median_positive_distance
+  wasserstein_sigma: 0.75
+  wasserstein_minmax_normalised: true
+
+surrogate:
+  n_estimators: 200
+  max_depth: 3
+  learning_rate: 0.05
+  subsample: 0.8
+  colsample_bytree: 0.8
+  reg_lambda: 1.0
+  test_size: 0.30
+  repeats: 30
+  seed: 42
+
+attribution:
+  affected_fraction_threshold: 0.10
+
+robustness:
+  contrast_factors: [0.6, 0.8, 1.0, 1.2, 1.4]
+  occlusion_percentages: [0, 1, 2, 3]
+  occlusion_x_ratio: 0.5
+  occlusion_darkness: 1.0
+

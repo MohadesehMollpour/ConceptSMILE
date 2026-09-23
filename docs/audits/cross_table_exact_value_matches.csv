@@ -1,0 +1,31 @@
+table_a,row_a_zero_based,identity_a,metric_a,table_b,row_b_zero_based,identity_b,metric_b,exact_display_value,interpretation,original_assembly_source
+2,0,MedSAM///ConceptLIME,WMAE,7,0,MedSAM/HRF/Lesion/,cosine_WMAE,0.0255,Equal rounded values only; intentional/copying NOT ESTABLISHED,NOT AVAILABLE
+2,1,MedSAM///ConceptBayLIME,WMAE,7,11,MedSAM/IDRiD/Optic disc/,wasserstein_WMAE,0.0250,Equal rounded values only; intentional/copying NOT ESTABLISHED,NOT AVAILABLE
+2,5,VLM///ConceptLIME,WMSE,7,13,VLM/HRF/Vessel/,wasserstein_WMSE,0.0030,Equal rounded values only; intentional/copying NOT ESTABLISHED,NOT AVAILABLE
+2,5,VLM///ConceptLIME,WMSE,7,16,VLM/APTOS/Vessel/,cosine_WMSE,0.0030,Equal rounded values only; intentional/copying NOT ESTABLISHED,NOT AVAILABLE
+2,6,VLM///ConceptBayLIME,WMSE,7,22,VLM/IDRiD/Vessel/,wasserstein_WMSE,0.0028,Equal rounded values only; intentional/copying NOT ESTABLISHED,NOT AVAILABLE
+2,7,VLM///ConceptSMILE-WLR,WMSE,7,13,VLM/HRF/Vessel/,wasserstein_WMSE,0.0030,Equal rounded values only; intentional/copying NOT ESTABLISHED,NOT AVAILABLE
+2,7,VLM///ConceptSMILE-WLR,WMSE,7,16,VLM/APTOS/Vessel/,cosine_WMSE,0.0030,Equal rounded values only; intentional/copying NOT ESTABLISHED,NOT AVAILABLE
+3,12,VLM/HRF/Lesion/,cosine_ACC,7,15,VLM/APTOS/Lesion/,cosine_R2,0.5328,Equal rounded values only; intentional/copying NOT ESTABLISHED,NOT AVAILABLE
+3,12,VLM/HRF/Lesion/,cosine_F1,7,15,VLM/APTOS/Lesion/,cosine_Rw2,0.5414,Equal rounded values only; intentional/copying NOT ESTABLISHED,NOT AVAILABLE
+3,12,VLM/HRF/Lesion/,wasserstein_ACC,7,18,VLM/ODIR-5K/Lesion/,wasserstein_R2,0.4429,Equal rounded values only; intentional/copying NOT ESTABLISHED,NOT AVAILABLE
+3,12,VLM/HRF/Lesion/,wasserstein_F1,7,18,VLM/ODIR-5K/Lesion/,wasserstein_Rw2,0.4437,Equal rounded values only; intentional/copying NOT ESTABLISHED,NOT AVAILABLE
+3,13,VLM/HRF/Vessel/,cosine_ACC,7,16,VLM/APTOS/Vessel/,cosine_R2,0.5511,Equal rounded values only; intentional/copying NOT ESTABLISHED,NOT AVAILABLE
+3,13,VLM/HRF/Vessel/,cosine_F1,7,16,VLM/APTOS/Vessel/,cosine_Rw2,0.5512,Equal rounded values only; intentional/copying NOT ESTABLISHED,NOT AVAILABLE
+3,13,VLM/HRF/Vessel/,wasserstein_F1,7,19,VLM/ODIR-5K/Vessel/,wasserstein_Rw2,0.0478,Equal rounded values only; intentional/copying NOT ESTABLISHED,NOT AVAILABLE
+3,14,VLM/HRF/Optic disc/,cosine_ACC,7,0,MedSAM/HRF/Lesion/,cosine_Rw2,0.7362,Equal rounded values only; intentional/copying NOT ESTABLISHED,NOT AVAILABLE
+3,14,VLM/HRF/Optic disc/,cosine_ACC,7,17,VLM/APTOS/Optic disc/,cosine_R2,0.7362,Equal rounded values only; intentional/copying NOT ESTABLISHED,NOT AVAILABLE
+3,14,VLM/HRF/Optic disc/,cosine_F1,7,17,VLM/APTOS/Optic disc/,cosine_Rw2,0.7343,Equal rounded values only; intentional/copying NOT ESTABLISHED,NOT AVAILABLE
+3,14,VLM/HRF/Optic disc/,wasserstein_F1,7,20,VLM/ODIR-5K/Optic disc/,wasserstein_Rw2,0.7073,Equal rounded values only; intentional/copying NOT ESTABLISHED,NOT AVAILABLE
+3,15,VLM/APTOS/Lesion/,cosine_ACC,7,15,VLM/APTOS/Lesion/,wasserstein_R2,0.4762,Equal rounded values only; intentional/copying NOT ESTABLISHED,NOT AVAILABLE
+3,15,VLM/APTOS/Lesion/,cosine_F1,7,15,VLM/APTOS/Lesion/,wasserstein_Rw2,0.4754,Equal rounded values only; intentional/copying NOT ESTABLISHED,NOT AVAILABLE
+3,15,VLM/APTOS/Lesion/,wasserstein_ACC,7,18,VLM/ODIR-5K/Lesion/,cosine_R2,0.4791,Equal rounded values only; intentional/copying NOT ESTABLISHED,NOT AVAILABLE
+3,15,VLM/APTOS/Lesion/,wasserstein_F1,7,18,VLM/ODIR-5K/Lesion/,cosine_Rw2,0.4812,Equal rounded values only; intentional/copying NOT ESTABLISHED,NOT AVAILABLE
+3,16,VLM/APTOS/Vessel/,cosine_ACC,7,16,VLM/APTOS/Vessel/,wasserstein_R2,0.5016,Equal rounded values only; intentional/copying NOT ESTABLISHED,NOT AVAILABLE
+3,16,VLM/APTOS/Vessel/,cosine_F1,7,16,VLM/APTOS/Vessel/,wasserstein_Rw2,0.5453,Equal rounded values only; intentional/copying NOT ESTABLISHED,NOT AVAILABLE
+3,16,VLM/APTOS/Vessel/,wasserstein_ACC,7,19,VLM/ODIR-5K/Vessel/,cosine_R2,0.0583,Equal rounded values only; intentional/copying NOT ESTABLISHED,NOT AVAILABLE
+3,16,VLM/APTOS/Vessel/,wasserstein_F1,7,19,VLM/ODIR-5K/Vessel/,cosine_Rw2,0.0325,Equal rounded values only; intentional/copying NOT ESTABLISHED,NOT AVAILABLE
+3,17,VLM/APTOS/Optic disc/,cosine_ACC,7,17,VLM/APTOS/Optic disc/,wasserstein_R2,0.6316,Equal rounded values only; intentional/copying NOT ESTABLISHED,NOT AVAILABLE
+3,17,VLM/APTOS/Optic disc/,cosine_F1,7,17,VLM/APTOS/Optic disc/,wasserstein_Rw2,0.6562,Equal rounded values only; intentional/copying NOT ESTABLISHED,NOT AVAILABLE
+3,17,VLM/APTOS/Optic disc/,wasserstein_ACC,7,20,VLM/ODIR-5K/Optic disc/,cosine_R2,0.7383,Equal rounded values only; intentional/copying NOT ESTABLISHED,NOT AVAILABLE
+3,17,VLM/APTOS/Optic disc/,wasserstein_F1,7,20,VLM/ODIR-5K/Optic disc/,cosine_Rw2,0.7313,Equal rounded values only; intentional/copying NOT ESTABLISHED,NOT AVAILABLE

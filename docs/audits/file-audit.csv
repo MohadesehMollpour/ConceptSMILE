@@ -1,0 +1,104 @@
+path,purpose,provenance,action,limitation
+.env.example,Repository support,RECONSTRUCTED,KEEP in final package,See final-scientific-audit.md; no full experiment reproduction
+.github/ISSUE_TEMPLATE/bug_report.yml,Repository support,RECONSTRUCTED,KEEP in final package,See final-scientific-audit.md; no full experiment reproduction
+.github/ISSUE_TEMPLATE/feature_request.yml,Repository support,RECONSTRUCTED,KEEP in final package,See final-scientific-audit.md; no full experiment reproduction
+.github/PULL_REQUEST_TEMPLATE.md,Repository support,RECONSTRUCTED,KEEP in final package,See final-scientific-audit.md; no full experiment reproduction
+.github/workflows/ci.yml,Repository support,RECONSTRUCTED,KEEP in final package,See final-scientific-audit.md; no full experiment reproduction
+.github/workflows/docs.yml,Repository support,RECONSTRUCTED,KEEP in final package,See final-scientific-audit.md; no full experiment reproduction
+.gitignore,Repository support,RECONSTRUCTED,KEEP in final package,See final-scientific-audit.md; no full experiment reproduction
+CHANGELOG.md,Repository support,RECONSTRUCTED,KEEP in final package,See final-scientific-audit.md; no full experiment reproduction
+CITATION.cff,Repository support,RECONSTRUCTED,KEEP in final package,See final-scientific-audit.md; no full experiment reproduction
+CODE_OF_CONDUCT.md,Repository support,RECONSTRUCTED,KEEP in final package,See final-scientific-audit.md; no full experiment reproduction
+CONTRIBUTING.md,Repository support,RECONSTRUCTED,KEEP in final package,See final-scientific-audit.md; no full experiment reproduction
+FINAL_REPOSITORY_STATUS.md,Repository support,RECONSTRUCTED,KEEP in final package,See final-scientific-audit.md; no full experiment reproduction
+LICENSE,Repository support,RECONSTRUCTED,KEEP in final package,See final-scientific-audit.md; no full experiment reproduction
+MANUSCRIPT_CODE_TRACEABILITY.md,Repository support,RECONSTRUCTED,KEEP in final package,See final-scientific-audit.md; no full experiment reproduction
+README.md,Repository support,RECONSTRUCTED,KEEP in final package,See final-scientific-audit.md; no full experiment reproduction
+RELEASE_CHECKLIST.md,Repository support,RECONSTRUCTED,KEEP in final package,See final-scientific-audit.md; no full experiment reproduction
+REPOSITORY_CHANGELOG.md,Repository support,RECONSTRUCTED,KEEP in final package,See final-scientific-audit.md; no full experiment reproduction
+SECURITY.md,Repository support,RECONSTRUCTED,KEEP in final package,See final-scientific-audit.md; no full experiment reproduction
+SUBMISSION_READINESS_REPORT.md,Repository support,RECONSTRUCTED,KEEP in final package,See final-scientific-audit.md; no full experiment reproduction
+SUPPORT.md,Repository support,RECONSTRUCTED,KEEP in final package,See final-scientific-audit.md; no full experiment reproduction
+configs/legacy/medsam_odir_single_image.yaml,Historical protocol settings,PRESERVED settings,KEEP in final package,See final-scientific-audit.md; no full experiment reproduction
+configs/legacy/pre_audit_default_UNVERIFIED.yaml,Historical protocol settings,UNVERIFIED,KEEP in final package,See final-scientific-audit.md; no full experiment reproduction
+configs/legacy/vlm_odir_single_image.yaml,Historical protocol settings,PRESERVED settings,KEEP in final package,See final-scientific-audit.md; no full experiment reproduction
+configs/paper.yaml,Repository support,RECONSTRUCTED,KEEP in final package,See final-scientific-audit.md; no full experiment reproduction
+data/README.md,Repository support,RECONSTRUCTED,KEEP in final package,See final-scientific-audit.md; no full experiment reproduction
+data/manifests/README.md,Repository support,RECONSTRUCTED,KEEP in final package,See final-scientific-audit.md; no full experiment reproduction
+docs/audits/changed-files.csv,Audit and verification record,RECONSTRUCTED,KEEP in final package,See final-scientific-audit.md; no full experiment reproduction
+docs/audits/cross_table_exact_value_matches.csv,Audit and verification record,RECONSTRUCTED,KEEP in final package,See final-scientific-audit.md; no full experiment reproduction
+docs/audits/current_test_environment.json,Audit and verification record,RECONSTRUCTED,KEEP in final package,See final-scientific-audit.md; no full experiment reproduction
+docs/audits/file-audit.csv,Audit and verification record,RECONSTRUCTED,KEEP in final package,See final-scientific-audit.md; no full experiment reproduction
+docs/audits/final-scientific-audit.md,Audit and verification record,RECONSTRUCTED,KEEP in final package,See final-scientific-audit.md; no full experiment reproduction
+docs/audits/manuscript-review.md,Audit and verification record,RECONSTRUCTED,KEEP in final package,See final-scientific-audit.md; no full experiment reproduction
+docs/audits/migration-map.md,Audit and verification record,RECONSTRUCTED,KEEP in final package,See final-scientific-audit.md; no full experiment reproduction
+docs/audits/preservation_manifest.csv,Audit and verification record,RECONSTRUCTED,KEEP in final package,See final-scientific-audit.md; no full experiment reproduction
+docs/audits/repository-tree.md,Audit and verification record,RECONSTRUCTED,KEEP in final package,See final-scientific-audit.md; no full experiment reproduction
+docs/audits/table4_value_traceability.csv,Audit and verification record,RECONSTRUCTED,KEEP in final package,See final-scientific-audit.md; no full experiment reproduction
+docs/audits/table6_variance_sd_audit.csv,Audit and verification record,RECONSTRUCTED,KEEP in final package,See final-scientific-audit.md; no full experiment reproduction
+docs/audits/validation.md,Audit and verification record,RECONSTRUCTED,KEEP in final package,See final-scientific-audit.md; no full experiment reproduction
+docs/datasets.md,Repository support,RECONSTRUCTED,KEEP in final package,See final-scientific-audit.md; no full experiment reproduction
+docs/index.md,Repository support,RECONSTRUCTED,KEEP in final package,See final-scientific-audit.md; no full experiment reproduction
+docs/methodology.md,Repository support,RECONSTRUCTED,KEEP in final package,See final-scientific-audit.md; no full experiment reproduction
+docs/reproducibility.md,Repository support,RECONSTRUCTED,KEEP in final package,See final-scientific-audit.md; no full experiment reproduction
+docs/responsible_ai.md,Repository support,RECONSTRUCTED,KEEP in final package,See final-scientific-audit.md; no full experiment reproduction
+docs/scientific_provenance.md,Repository support,RECONSTRUCTED,KEEP in final package,See final-scientific-audit.md; no full experiment reproduction
+figures/README.md,Repository support,RECONSTRUCTED,KEEP in final package,See final-scientific-audit.md; no full experiment reproduction
+figures/framework/README.md,Repository support,RECONSTRUCTED,KEEP in final package,See final-scientific-audit.md; no full experiment reproduction
+figures/results/README.md,Repository support,RECONSTRUCTED,KEEP in final package,See final-scientific-audit.md; no full experiment reproduction
+mkdocs.yml,Repository support,RECONSTRUCTED,KEEP in final package,See final-scientific-audit.md; no full experiment reproduction
+notebooks/README.md,Repository support,RECONSTRUCTED,KEEP in final package,See final-scientific-audit.md; no full experiment reproduction
+notebooks/legacy/README.md,Repository support,RECONSTRUCTED,KEEP in final package,See final-scientific-audit.md; no full experiment reproduction
+notebooks/legacy/medsam_odir_single_image_experiment.ipynb,Historical single-image experiment,PRESERVED source/text; SANITISED DERIVATIVE,KEEP in final package,See final-scientific-audit.md; no full experiment reproduction
+notebooks/legacy/vlm_odir_single_image_experiment.ipynb,Historical single-image experiment,PRESERVED source/text; SANITISED DERIVATIVE,KEEP in final package,See final-scientific-audit.md; no full experiment reproduction
+paper/README.md,Repository support,RECONSTRUCTED,KEEP in final package,See final-scientific-audit.md; no full experiment reproduction
+pyproject.toml,Repository support,RECONSTRUCTED,KEEP in final package,See final-scientific-audit.md; no full experiment reproduction
+requirements-dev.txt,Repository support,RECONSTRUCTED,KEEP in final package,See final-scientific-audit.md; no full experiment reproduction
+requirements-models.txt,Repository support,RECONSTRUCTED,KEEP in final package,See final-scientific-audit.md; no full experiment reproduction
+requirements.txt,Repository support,RECONSTRUCTED,KEEP in final package,See final-scientific-audit.md; no full experiment reproduction
+results/README.md,Repository support,RECONSTRUCTED,KEEP in final package,See final-scientific-audit.md; no full experiment reproduction
+results/attribution/README.md,Repository support,RECONSTRUCTED,KEEP in final package,See final-scientific-audit.md; no full experiment reproduction
+results/consistency/README.md,Repository support,RECONSTRUCTED,KEEP in final package,See final-scientific-audit.md; no full experiment reproduction
+results/faithfulness/README.md,Repository support,RECONSTRUCTED,KEEP in final package,See final-scientific-audit.md; no full experiment reproduction
+results/fidelity/README.md,Repository support,RECONSTRUCTED,KEEP in final package,See final-scientific-audit.md; no full experiment reproduction
+results/manuscript_transcribed/README.md,Unchanged reported table record,MANUSCRIPT-TRANSCRIBED,KEEP in final package,See final-scientific-audit.md; no full experiment reproduction
+results/manuscript_transcribed/table2_manuscript_transcribed.csv,Unchanged reported table record,MANUSCRIPT-TRANSCRIBED,KEEP in final package,See final-scientific-audit.md; no full experiment reproduction
+results/manuscript_transcribed/table3_manuscript_transcribed.csv,Unchanged reported table record,MANUSCRIPT-TRANSCRIBED,KEEP in final package,See final-scientific-audit.md; no full experiment reproduction
+results/manuscript_transcribed/table4_manuscript_transcribed.csv,Unchanged reported table record,MANUSCRIPT-TRANSCRIBED,KEEP in final package,See final-scientific-audit.md; no full experiment reproduction
+results/manuscript_transcribed/table5_manuscript_transcribed.csv,Unchanged reported table record,MANUSCRIPT-TRANSCRIBED,KEEP in final package,See final-scientific-audit.md; no full experiment reproduction
+results/manuscript_transcribed/table6_manuscript_transcribed.csv,Unchanged reported table record,MANUSCRIPT-TRANSCRIBED,KEEP in final package,See final-scientific-audit.md; no full experiment reproduction
+results/manuscript_transcribed/table7_manuscript_transcribed.csv,Unchanged reported table record,MANUSCRIPT-TRANSCRIBED,KEEP in final package,See final-scientific-audit.md; no full experiment reproduction
+results/preserved/notebook_output_index.csv,Repository support,RECONSTRUCTED,KEEP in final package,See final-scientific-audit.md; no full experiment reproduction
+results/robustness/README.md,Repository support,RECONSTRUCTED,KEEP in final package,See final-scientific-audit.md; no full experiment reproduction
+results/stability/README.md,Repository support,RECONSTRUCTED,KEEP in final package,See final-scientific-audit.md; no full experiment reproduction
+scripts/audit_manuscript_tables.py,Repository support,RECONSTRUCTED,KEEP in final package,See final-scientific-audit.md; no full experiment reproduction
+scripts/synthetic_smoke_test.py,Repository support,RECONSTRUCTED,KEEP in final package,See final-scientific-audit.md; no full experiment reproduction
+scripts/validate_config.py,Repository support,RECONSTRUCTED,KEEP in final package,See final-scientific-audit.md; no full experiment reproduction
+src/conceptsmile/__init__.py,Reusable scientific utility,RECONSTRUCTED,KEEP in final package,See final-scientific-audit.md; no full experiment reproduction
+src/conceptsmile/__main__.py,Reusable scientific utility,RECONSTRUCTED,KEEP in final package,See final-scientific-audit.md; no full experiment reproduction
+src/conceptsmile/concepts/__init__.py,Reusable scientific utility,RECONSTRUCTED,KEEP in final package,See final-scientific-audit.md; no full experiment reproduction
+src/conceptsmile/concepts/medsam.py,Reusable scientific utility,RECONSTRUCTED,KEEP in final package,See final-scientific-audit.md; no full experiment reproduction
+src/conceptsmile/concepts/vlm.py,Reusable scientific utility,RECONSTRUCTED,KEEP in final package,See final-scientific-audit.md; no full experiment reproduction
+src/conceptsmile/embeddings/__init__.py,Reusable scientific utility,RECONSTRUCTED,KEEP in final package,See final-scientific-audit.md; no full experiment reproduction
+src/conceptsmile/embeddings/dinov2.py,Reusable scientific utility,RECONSTRUCTED,KEEP in final package,See final-scientific-audit.md; no full experiment reproduction
+src/conceptsmile/locality/__init__.py,Reusable scientific utility,RECONSTRUCTED,KEEP in final package,See final-scientific-audit.md; no full experiment reproduction
+src/conceptsmile/locality/distances.py,Reusable scientific utility,RECONSTRUCTED,KEEP in final package,See final-scientific-audit.md; no full experiment reproduction
+src/conceptsmile/metrics/__init__.py,Reusable scientific utility,RECONSTRUCTED,KEEP in final package,See final-scientific-audit.md; no full experiment reproduction
+src/conceptsmile/metrics/attribution.py,Reusable scientific utility,RECONSTRUCTED,KEEP in final package,See final-scientific-audit.md; no full experiment reproduction
+src/conceptsmile/metrics/consistency.py,Reusable scientific utility,RECONSTRUCTED,KEEP in final package,See final-scientific-audit.md; no full experiment reproduction
+src/conceptsmile/metrics/faithfulness.py,Reusable scientific utility,RECONSTRUCTED,KEEP in final package,See final-scientific-audit.md; no full experiment reproduction
+src/conceptsmile/metrics/fidelity.py,Reusable scientific utility,RECONSTRUCTED,KEEP in final package,See final-scientific-audit.md; no full experiment reproduction
+src/conceptsmile/metrics/stability.py,Reusable scientific utility,RECONSTRUCTED,KEEP in final package,See final-scientific-audit.md; no full experiment reproduction
+src/conceptsmile/perturbation/__init__.py,Reusable scientific utility,RECONSTRUCTED,KEEP in final package,See final-scientific-audit.md; no full experiment reproduction
+src/conceptsmile/perturbation/superpixels.py,Reusable scientific utility,RECONSTRUCTED,KEEP in final package,See final-scientific-audit.md; no full experiment reproduction
+src/conceptsmile/robustness/__init__.py,Reusable scientific utility,RECONSTRUCTED,KEEP in final package,See final-scientific-audit.md; no full experiment reproduction
+src/conceptsmile/robustness/acquisition.py,Reusable scientific utility,RECONSTRUCTED,KEEP in final package,See final-scientific-audit.md; no full experiment reproduction
+src/conceptsmile/surrogate/__init__.py,Reusable scientific utility,RECONSTRUCTED,KEEP in final package,See final-scientific-audit.md; no full experiment reproduction
+src/conceptsmile/surrogate/xgboost_surrogate.py,Reusable scientific utility,RECONSTRUCTED,KEEP in final package,See final-scientific-audit.md; no full experiment reproduction
+src/conceptsmile/utils/__init__.py,Reusable scientific utility,RECONSTRUCTED,KEEP in final package,See final-scientific-audit.md; no full experiment reproduction
+src/conceptsmile/utils/random.py,Reusable scientific utility,RECONSTRUCTED,KEEP in final package,See final-scientific-audit.md; no full experiment reproduction
+tests/test_concepts_and_robustness.py,Repository support,RECONSTRUCTED,KEEP in final package,See final-scientific-audit.md; no full experiment reproduction
+tests/test_locality.py,Repository support,RECONSTRUCTED,KEEP in final package,See final-scientific-audit.md; no full experiment reproduction
+tests/test_metrics.py,Repository support,RECONSTRUCTED,KEEP in final package,See final-scientific-audit.md; no full experiment reproduction
+tests/test_perturbation.py,Repository support,RECONSTRUCTED,KEEP in final package,See final-scientific-audit.md; no full experiment reproduction
+tests/test_validation.py,Repository support,RECONSTRUCTED,KEEP in final package,See final-scientific-audit.md; no full experiment reproduction
