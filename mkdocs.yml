@@ -1,0 +1,16 @@
+site_name: ConceptSMILE
+repo_url: https://github.com/MohadesehMollpour/ConceptSMILE
+docs_dir: docs
+site_dir: site
+theme:
+  name: material
+nav:
+  - Overview: index.md
+  - Provenance: scientific_provenance.md
+  - Methods: methodology.md
+  - Reproducibility: reproducibility.md
+  - Datasets: datasets.md
+  - Responsible AI: responsible_ai.md
+  - Final audit: audits/final-scientific-audit.md
+  - Manuscript review: audits/manuscript-review.md
+  - Validation: audits/validation.md

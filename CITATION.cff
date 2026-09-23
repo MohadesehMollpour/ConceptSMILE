@@ -1,0 +1,19 @@
+cff-version: 1.2.0
+message: "If you use ConceptSMILE, please cite the associated paper. Publication details are pending."
+type: software
+title: "ConceptSMILE: Auditing the Trustworthiness of Concept-Based Explainable AI"
+authors:
+  - family-names: Mollapour
+    given-names: Mohadeseh
+  - family-names: Aslansefat
+    given-names: Koorosh
+  - family-names: Dehghani
+    given-names: Zeinab
+  - family-names: Mishra
+    given-names: Bhupesh Kumar
+  - family-names: Shah
+    given-names: Tejal
+  - family-names: Mian
+    given-names: Zhibao
+repository-code: "https://github.com/MohadesehMollpour/ConceptSMILE"
+

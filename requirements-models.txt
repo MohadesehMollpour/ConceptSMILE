@@ -1,0 +1,5 @@
+# Candidate notebook dependencies, NOT a validated historical environment.
+-e .[models]
+
+# MedSAM additionally needs segment-anything. Select and record a reviewed
+# source commit before installing it; no moving Git dependency is installed here.
