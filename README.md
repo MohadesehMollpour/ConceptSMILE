@@ -3,7 +3,21 @@
 A perturbation-based approach to auditing concept-level explanation reliability: mask image regions, measure concept-response shifts, compute locality weights and fit a local surrogate.
 
 **AMBER: transparent research release with incomplete historical reproducibility.** This package contains reusable reconstructed utilities, sanitised historical evidence and explicitly labelled manuscript transcriptions. It does not reproduce the full paper or validate its disputed comparative results. Start with [FINAL_REPOSITORY_STATUS.md](FINAL_REPOSITORY_STATUS.md).
+## ConceptSMILE framework
 
+<p align="center">
+  <img
+    src="figures/framework/figure04_conceptsmile_framework_overview.png.png"
+    alt="Overview of the ConceptSMILE framework"
+    width="100%"
+  >
+</p>
+
+<p align="center">
+  <em>Overview of the ConceptSMILE framework. The pipeline extracts concept-level outputs,
+  applies controlled superpixel perturbations, computes locality weights, and fits a local
+  surrogate model for reliability auditing.</em>
+</p>
 ## Evidence you can inspect
 
 - MedSAM and Qwen2.5-VL notebooks each demonstrate one image from an ODIR mirror. Source cells and plain-text outputs are preserved; embedded visuals/rich displays are removed with an [audit trail](docs/audits/preservation_manifest.csv).
