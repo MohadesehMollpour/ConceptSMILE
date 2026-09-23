@@ -1,0 +1,21 @@
+name: Feature request
+description: Propose a scoped research-software improvement.
+title: "[Feature]: "
+labels: [enhancement]
+
+body:
+  - type: textarea
+    id: need
+    attributes:
+      label: Research need
+      description: What reproducibility or auditing need would this address?
+    validations:
+      required: true
+
+  - type: textarea
+    id: provenance
+    attributes:
+      label: Scientific provenance
+      description: Cite the manuscript section, method, or external reference supporting the change.
+    validations:
+      required: true
