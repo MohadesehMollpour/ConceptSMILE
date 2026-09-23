@@ -53,7 +53,7 @@ These are software checks and transcription audits, not retinal experiments. See
 | `results/preserved/` | Original notebook output index |
 | `docs/audits/` | Arithmetic, cross-table, provenance and validation records |
 
-Obtain datasets independently using [provider instructions](docs/datasets.md). No dataset/image/third-party logo is bundled. There is no full-data reproduction command. See [reproducibility](docs/reproducibility.md) for requirements for a future rerun and [traceability](MANUSCRIPT_CODE_TRACEABILITY.md) for equations and results.
+Obtain datasets independently using [provider instructions](docs/datasets.md). The repository does not redistribute the source datasets or model weights. Manuscript figures are included under `figures/` for documentation; however, the provenance and redistribution status of underlying retinal images and any third-party graphical elements are not fully established. See [figure provenance](figures/README.md) for details. There is no full-data reproduction command. See [reproducibility](docs/reproducibility.md) for requirements for a future rerun and [traceability](MANUSCRIPT_CODE_TRACEABILITY.md) for equations and results.
 
 [Provenance categories](docs/scientific_provenance.md): ORIGINAL, PRESERVED, RECONSTRUCTED, RE-RUN, MANUSCRIPT-TRANSCRIBED, UNVERIFIED and NOT AVAILABLE. Their meanings distinguish a copied statement from evidence that an experiment was executed.
 
