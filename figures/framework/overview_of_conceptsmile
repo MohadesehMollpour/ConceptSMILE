@@ -1,0 +1,11 @@
+## Framework overview
+
+<p align="center">
+  <img src="figures/overview_of_conceptsmile.png"
+       alt="Overview of the ConceptSMILE perturbation-based concept auditing framework"
+       width="100%">
+</p>
+
+<p align="center">
+  <em>Overview of the ConceptSMILE workflow for concept extraction, controlled perturbation, locality weighting, surrogate modelling, and explanation auditing.</em>
+</p>
