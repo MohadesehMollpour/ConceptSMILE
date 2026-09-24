@@ -11,7 +11,6 @@ after adding a superficial non-clinical artefact.
 from __future__ import annotations
 
 from collections.abc import Hashable, Iterable
-
 from dataclasses import dataclass
 
 
