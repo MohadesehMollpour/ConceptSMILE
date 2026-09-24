@@ -1,38 +1,17 @@
-"""ConceptSMILE reliability evaluation metrics.
+"""ConceptSMILE acquisition-robustness utilities.
 
-The package exposes the five evaluation dimensions reported
-in the manuscript:
-
-- attribution accuracy
-- surrogate fidelity
-- faithfulness
-- stability
-- consistency
+This package contains utilities for the additional robustness
+analysis reported in Section 5.3 of the manuscript.
 """
 
-from .attribution import AttributionMetrics, evaluate_attribution
-from .consistency import (
-    ConsistencyMetrics,
-    consistency_statistics,
-    evaluate_consistency,
+from .acquisition import (
+    add_simulated_occlusion,
+    modify_retinal_contrast,
+    retinal_fov_mask,
 )
-from .faithfulness import FaithfulnessMetrics, evaluate_faithfulness
-from .fidelity import FidelityMetrics, evaluate_fidelity, weighted_mean
-from .stability import StabilityMetrics, evaluate_stability, jaccard_index
-
 
 __all__ = [
-    "AttributionMetrics",
-    "ConsistencyMetrics",
-    "FaithfulnessMetrics",
-    "FidelityMetrics",
-    "StabilityMetrics",
-    "consistency_statistics",
-    "evaluate_attribution",
-    "evaluate_consistency",
-    "evaluate_faithfulness",
-    "evaluate_fidelity",
-    "evaluate_stability",
-    "jaccard_index",
-    "weighted_mean",
+    "add_simulated_occlusion",
+    "modify_retinal_contrast",
+    "retinal_fov_mask",
 ]
