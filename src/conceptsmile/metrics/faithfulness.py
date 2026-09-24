@@ -1,5 +1,12 @@
-# Provenance: RECONSTRUCTED reusable code; historical execution not established.
-"""Correlation-based concept faithfulness."""
+"""ConceptSMILE faithfulness metric.
+
+Manuscript correspondence:
+    Eq. (16)
+
+Faithfulness is measured using Pearson correlation between
+concept-relevant perturbation strength and the absolute
+concept-response shift.
+"""
 
 from __future__ import annotations
 
@@ -10,32 +17,90 @@ from scipy.stats import pearsonr
 
 
 @dataclass(frozen=True)
-class FaithfulnessResult:
+class FaithfulnessMetrics:
+    """Faithfulness evaluation results."""
+
     correlation: float
     p_value: float
     n: int
     status: str
 
 
-def pearson_faithfulness(
-    affected_fraction: np.ndarray,
+def evaluate_faithfulness(
+    perturbation_strength: np.ndarray,
     response_shift: np.ndarray,
-) -> FaithfulnessResult:
-    """Correlate supplied perturbation strength with absolute response shift.
+) -> FaithfulnessMetrics:
+    """Evaluate ConceptSMILE faithfulness.
 
-    The caller must establish whether strength is concept-specific; correlation
-    alone does not establish causal validity or independent clinical relevance."""
-    affected = np.asarray(affected_fraction, dtype=float).reshape(-1)
-    shift = np.abs(np.asarray(response_shift, dtype=float).reshape(-1))
-    if len(affected) != len(shift):
-        raise ValueError("affected_fraction and response_shift must have equal length")
-    valid = np.isfinite(affected) & np.isfinite(shift)
-    affected = affected[valid]
+    Parameters
+    ----------
+    perturbation_strength:
+        Concept-relevant perturbation strength s_i^(k).
+
+    response_shift:
+        Concept-response shift Δy_i^(k).
+        The manuscript uses its absolute value in Eq. (16).
+
+    Returns
+    -------
+    FaithfulnessMetrics
+        Pearson correlation, p-value, number of valid
+        perturbations, and evaluation status.
+    """
+
+    strength = np.asarray(
+        perturbation_strength,
+        dtype=float,
+    ).reshape(-1)
+
+    shift = np.abs(
+        np.asarray(
+            response_shift,
+            dtype=float,
+        ).reshape(-1)
+    )
+
+    if strength.shape != shift.shape:
+        raise ValueError(
+            "perturbation_strength and response_shift "
+            "must have equal length."
+        )
+
+    valid = (
+        np.isfinite(strength)
+        & np.isfinite(shift)
+    )
+
+    strength = strength[valid]
     shift = shift[valid]
-    if len(affected) < 3:
-        return FaithfulnessResult(float("nan"), float("nan"), len(affected), "too_few_samples")
-    if np.unique(affected).size < 2 or np.unique(shift).size < 2:
-        return FaithfulnessResult(float("nan"), float("nan"), len(affected), "no_variation")
-    correlation, p_value = pearsonr(affected, shift)
-    return FaithfulnessResult(float(correlation), float(p_value), len(affected), "ok")
 
+    if len(strength) < 3:
+        return FaithfulnessMetrics(
+            correlation=float("nan"),
+            p_value=float("nan"),
+            n=len(strength),
+            status="too_few_samples",
+        )
+
+    if (
+        np.unique(strength).size < 2
+        or np.unique(shift).size < 2
+    ):
+        return FaithfulnessMetrics(
+            correlation=float("nan"),
+            p_value=float("nan"),
+            n=len(strength),
+            status="no_variation",
+        )
+
+    correlation, p_value = pearsonr(
+        strength,
+        shift,
+    )
+
+    return FaithfulnessMetrics(
+        correlation=float(correlation),
+        p_value=float(p_value),
+        n=len(strength),
+        status="ok",
+    )
