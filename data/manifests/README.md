@@ -1,41 +1,76 @@
-dataset,image_id,source_filename,selection_order,notes
-HRF,image3,,1,Author-confirmed manuscript evaluation image
-HRF,image1,,2,Author-confirmed manuscript evaluation image
-HRF,image2,,3,Author-confirmed manuscript evaluation image
-HRF,Image 4,,4,Author-confirmed manuscript evaluation image
-HRF,Image 5,,5,Author-confirmed manuscript evaluation image
-HRF,Image 6,,6,Author-confirmed manuscript evaluation image
-HRF,Image 7,,7,Author-confirmed manuscript evaluation image
-HRF,Image 8,,8,Author-confirmed manuscript evaluation image
-HRF,Image 9,,9,Author-confirmed manuscript evaluation image
-HRF,Image 10,,10,Author-confirmed manuscript evaluation image
-APTOS_2019,000c1434d8d7,,1,Author-confirmed manuscript evaluation image
-APTOS_2019,001639a390f0,,2,Author-confirmed manuscript evaluation image
-APTOS_2019,0083ee8054ee,,3,Author-confirmed manuscript evaluation image
-APTOS_2019,02685f13cefd,,4,Author-confirmed manuscript evaluation image
-APTOS_2019,03a7f4a5786f,,5,Author-confirmed manuscript evaluation image
-APTOS_2019,0318598cfd16,,6,Author-confirmed manuscript evaluation image
-APTOS_2019,034cb07a550f,,7,Author-confirmed manuscript evaluation image
-APTOS_2019,02dda30d3acf,,8,Author-confirmed manuscript evaluation image
-APTOS_2019,03c85870824c,,9,Author-confirmed manuscript evaluation image
-APTOS_2019,0104b032c141,,10,Author-confirmed manuscript evaluation image
-ODIR_5K,image0,,1,Author-confirmed manuscript evaluation image
-ODIR_5K,image1,,2,Author-confirmed manuscript evaluation image
-ODIR_5K,image10,,3,Author-confirmed manuscript evaluation image
-ODIR_5K,image100,,4,Author-confirmed manuscript evaluation image
-ODIR_5K,image1000,,5,Author-confirmed manuscript evaluation image
-ODIR_5K,image1002,,6,Author-confirmed manuscript evaluation image
-ODIR_5K,image1003,,7,Author-confirmed manuscript evaluation image
-ODIR_5K,image1004,,8,Author-confirmed manuscript evaluation image
-ODIR_5K,image1006,,9,Author-confirmed manuscript evaluation image
-ODIR_5K,image1008,,10,Author-confirmed manuscript evaluation image
-IDRiD,IDRiD_002,,1,Author-confirmed manuscript evaluation image
-IDRiD,IDRiD_004,,2,Author-confirmed manuscript evaluation image
-IDRiD,IDRiD_017,,3,Author-confirmed manuscript evaluation image
-IDRiD,IDRiD_014,,4,Author-confirmed manuscript evaluation image
-IDRiD,IDRiD_015,,5,Author-confirmed manuscript evaluation image
-IDRiD,IDRiD_022,,6,Author-confirmed manuscript evaluation image
-IDRiD,IDRiD_030,,7,Author-confirmed manuscript evaluation image
-IDRiD,IDRiD_031,,8,Author-confirmed manuscript evaluation image
-IDRiD,IDRiD_033,,9,Author-confirmed manuscript evaluation image
-IDRiD,IDRiD_049,,10,Author-confirmed manuscript evaluation image
+# ConceptSMILE Evaluation Image Manifest
+
+This directory documents the retinal fundus images used in the ConceptSMILE
+experimental evaluation reported in the manuscript.
+
+The evaluation contains **40 images in total**, with **10 images selected from
+each of four publicly available retinal datasets**:
+
+- HRF
+- APTOS 2019
+- ODIR-5K
+- IDRiD
+
+The image identifiers below were confirmed by the author as the images used in
+the manuscript experiments.
+
+## HRF
+
+| No. | Image ID |
+|---:|---|
+| 1 | image3 |
+| 2 | image1 |
+| 3 | image2 |
+| 4 | Image 4 |
+| 5 | Image 5 |
+| 6 | Image 6 |
+| 7 | Image 7 |
+| 8 | Image 8 |
+| 9 | Image 9 |
+| 10 | Image 10 |
+
+## APTOS 2019
+
+| No. | Image ID |
+|---:|---|
+| 1 | 000c1434d8d7 |
+| 2 | 001639a390f0 |
+| 3 | 0083ee8054ee |
+| 4 | 02685f13cefd |
+| 5 | 03a7f4a5786f |
+| 6 | 0318598cfd16 |
+| 7 | 034cb07a550f |
+| 8 | 02dda30d3acf |
+| 9 | 03c85870824c |
+| 10 | 0104b032c141 |
+
+## ODIR-5K
+
+| No. | Image ID |
+|---:|---|
+| 1 | image0 |
+| 2 | image1 |
+| 3 | image10 |
+| 4 | image100 |
+| 5 | image1000 |
+| 6 | image1002 |
+| 7 | image1003 |
+| 8 | image1004 |
+| 9 | image1006 |
+| 10 | image1008 |
+
+## IDRiD
+
+| No. | Image ID |
+|---:|---|
+| 1 | IDRiD_002 |
+| 2 | IDRiD_004 |
+| 3 | IDRiD_017 |
+| 4 | IDRiD_014 |
+| 5 | IDRiD_015 |
+| 6 | IDRiD_022 |
+| 7 | IDRiD_030 |
+| 8 | IDRiD_031 |
+| 9 | IDRiD_033 |
+| 10 | IDRiD_049 |
+
