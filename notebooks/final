@@ -1,0 +1,28 @@
+# Final ConceptSMILE implementation
+
+This directory is reserved for the final implementation corresponding to the
+submitted ConceptSMILE manuscript.
+
+The final implementation should follow the experimental protocol reported in
+the manuscript, including:
+
+- four retinal datasets: HRF, APTOS 2019, ODIR-5K, and IDRiD;
+- 10 selected images per dataset (40 images in total);
+- three retinal concepts: lesion, blood vessels, and optic disc;
+- SLIC superpixels with target segments = 7;
+- 50 unique binary superpixel perturbations per image;
+- exclusion of the all-masked perturbation;
+- black masking of removed superpixels;
+- `facebook/dinov2-base` CLS-token embeddings for locality computation;
+- cosine and Wasserstein distance;
+- exponential locality weighting;
+- a fixed structured JSON prompt for the VLM pathway; and
+- XGBoost as the local surrogate model.
+
+The historical exploratory notebooks remain in `../legacy/` and are retained
+for provenance. They should not be interpreted as the final manuscript
+implementation.
+
+Final experiment notebooks, configuration, image manifests, and result files
+will be added here only when they can be verified against the experiments
+reported in the manuscript.
