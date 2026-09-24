@@ -1,42 +1,76 @@
 # Manuscript-to-evidence audit
 
-Reviewed: `Moha___ConceptSMILE (1)(2).pdf`, 46 pages, SHA-256 c4a9c68fe7ae240530a6db9a3509d4116d94cd59976fec259b6ec71d2d87d992. Printed and PDF page numbers agree. Scientific methods, all numerical tables and quantitative figures were checked using text extraction and rendered pages. No manuscript values were altered. Citation correctness across the entire external bibliography has not been independently audited.
+Reviewed: `Moha___ConceptSMILE (16).pdf`, 49 pages, SHA-256 `9178fc53e22cc259142915264e9d52c8d7769c6aa8ec820b10057d743d90470c`.
 
-## Verified manuscript statements versus historical execution
+This audit compares the current manuscript with the implementation, preserved historical notebooks, configuration files, manuscript-transcribed results, and other evidence available in the ConceptSMILE repository.
 
-| Location | Verified manuscript statement | Preserved evidence / assessment |
+Scientific methods, numerical tables, quantitative figures, and repository correspondence have been reviewed for traceability. No manuscript result values have been altered by this audit. Citation correctness across the entire external bibliography has not been independently re-audited here.
+
+## Verified manuscript statements versus repository evidence
+
+| Location | Current manuscript statement | Repository evidence / assessment |
 | --- | --- | --- |
-| Section 4.1, pp.13–14 | MedSAM and semantic VLM concept pathways | Both single-image notebooks present; not complete same-image four-dataset pairing |
-| Section 4.2, Eqs.3–6, pp.14–15 | Binary superpixel masks and original-minus-perturbed response shift | Broadly supported by preserved code; unique sampling differs by pathway |
-| Table 1, p.21 | 40 images, ten per dataset; 50 unique masks; target SLIC 7; DINOv2 CLS | MedSAM uses target 12, six realised segments, non-unique draws, pooled MedSAM embeddings; historical 40-image IDs absent |
-| Section 4.3, Eq.9, p.16 | exp(−d²/sigma²) | Wasserstein notebook code min-max normalises and uses exp(−d_norm²/(2×0.75²)); factor 2 can be absorbed into width, but operational normalisation/width must be documented |
-| Section 4.3, Eq.10, p.16 | Weighted XGBoost shift regression | Repeated single-image code exists; settings/held-out split details not given in Table 1 |
-| Section 4.4, Eq.11, p.17; Table 3, p.25 | Clinically relevant attribution references | VLM labels circular and row-misaligned; MedSAM references are model-derived masks, not independent annotation |
-| Section 4.4, Eqs.12–15, p.18 | WMSE, WMAE, weighted R² | Reusable formula helpers agree for valid nondegenerate inputs; no proof of table reproduction |
-| Section 4.4, Eq.16, p.19; Table 4, p.27 | Concept-relevant strength versus absolute shift | VLM uses global removed fraction; M uses predicted-mask fraction |
-| Section 4.4, Eq.17, p.19; Table 5, p.29 | Date/logo Jaccard stability | No experiment or original explanation sets supplied; generic Jaccard helper only |
-| Section 4.4, Eqs.18–19, p.19; Table 6, p.31 | Sample variance and SD of repeated concept importance | Preserved code reports repeated split R² dispersion; no importance-score provenance |
-| Section 5.3, p.33; Figs.10–11, p.35 | Representative HRF image; contrast .6–1.4; occlusion 0–3% | Available M notebook loads ODIR image1.png; V experiment absent; do not relabel the image HRF |
-| Title page, p.1 | Six named authors | Matches existing CFF author list and package metadata |
-| Section 6, pp.37–38 | Proof of concept, no causal proof, no clinician/prospective testing | Appropriate limitations; they do not resolve unsupported numerical provenance |
+| Section 4.1, pp.13–14 | MedSAM and semantic VLM concept pathways | Preserved historical notebooks demonstrate both pathways, but they are exploratory single-image implementations rather than the complete four-dataset final manuscript pipeline. |
+| Section 4.2, Eqs.3–6, pp.14–15 | Binary superpixel perturbations and original-minus-perturbed concept-response shift | Broadly supported by preserved code. Historical implementation details differ between pathways and should not automatically be treated as the final manuscript protocol. |
+| Table 1, p.21 | 40 images, 10 per dataset; three concepts; 50 unique perturbations; SLIC target 7; black masking; DINOv2 CLS embeddings; cosine and Wasserstein locality; fixed structured VLM prompt; XGBoost surrogate | The author-confirmed 40-image evaluation identifiers are now documented in `data/manifests/paper_40_images.csv` and described in `data/manifests/README.md`. The preserved MedSAM legacy notebook still uses target 12, six realised segments, non-unique draws, and pooled MedSAM embeddings, so the historical implementation remains distinct from the manuscript-reported final protocol. |
+| Section 4.3, Eq.9, p.16 | Exponential locality weighting, `exp(-d²/sigma²)` | Historical Wasserstein notebook code min-max normalises distance and uses `exp(-d_norm²/(2×0.75²))`. The historical implementation therefore contains operational details not established as the final paper configuration. |
+| Section 4.3, Eq.10, p.16 | Weighted XGBoost regression of perturbation patterns against concept-response shifts | Repeated single-image XGBoost code is preserved. Complete final-paper hyperparameters, held-out split settings, and four-dataset execution provenance are not yet established from preserved evidence. |
+| Section 4.4, Eq.11, pp.17–18; Table 3, p.26 | Attribution accuracy using reference labels | Historical VLM labels are self-derived and contain a row-alignment issue; preserved MedSAM references are model-derived masks rather than independently verified clinical annotations. The historical notebooks therefore should not be treated automatically as the final Table 3 implementation. |
+| Section 4.4, Eqs.12–15, pp.18–19; Table 7, p.34 | WMSE, WMAE, R², and weighted R² surrogate fidelity | Reusable formula helpers implement the reported metric family for valid inputs, but preserved evidence does not independently reproduce the complete four-dataset Table 7. |
+| Section 4.4, Eq.16, p.19; Table 4, p.27 | Concept-relevant perturbation strength versus absolute concept-response shift | Historical VLM code uses global removed fraction, while the MedSAM notebook uses predicted-mask affected fraction. Final row-level paper provenance remains required to establish the exact Table 4 calculation. |
+| Section 4.4, Eq.17, p.19; Table 5, p.29 | Date/logo Jaccard stability | A reusable Jaccard helper exists, but the original explanation-set inputs and complete date/logo experiment used for Table 5 have not been recovered from the preserved historical notebooks. |
+| Section 4.4, Eqs.18–19, pp.19–20; Table 6, p.31 | Variance and standard deviation of repeated concept-importance scores | Preserved historical code reports repeated R² dispersion rather than clearly documented repeated concept-importance statistics. Final Table 6 source records remain required. |
+| Section 5.3, pp.35–37; Figs.10–11 | Robustness on a representative HRF image using contrast factors 0.6–1.4 and simulated occlusion levels 0–3% | The preserved MedSAM robustness notebook uses an ODIR image, while a complete preserved VLM robustness experiment has not been identified. The historical notebook should therefore not be relabelled as the HRF experiment reported in the paper. |
+| Title page, p.1 | Seven named authors: Mohadeseh Mollapour, Koorosh Aslansefat, Zeinab Dehghani, Bhupesh Kumar Mishra, Tejal Shah, Zhibao Mian, and Mehran Hosseinalizadeh | Repository metadata currently requires updating: `CITATION.cff` and `pyproject.toml` list six authors and omit Mehran Hosseinalizadeh. |
+| Section 6, pp.38–39 | Controlled proof-of-concept evaluation; no causal proof; no clinician-in-the-loop or prospective clinical validation | The manuscript appropriately limits its claims. These limitations do not by themselves establish provenance for numerical results, but they correctly bound the intended interpretation of the work. |
 
-## Further manuscript issues requiring original results
+## Further evidence and implementation issues
 
-1. **Table 4 locality dependence is unexplained.** M42 and V25 use ordinary `pearsonr` on the same strength/shift inputs, without locality weights. Merely switching cosine/Wasserstein surrogate weights cannot change those correlations. Table 4 reports different correlations in both columns. Recover the actual calculation, sample selection and aggregation before accepting either column. Do not invent a weighted Pearson implementation to fit the table.
-2. **Table 4 significance reporting needs review.** M42 computes a mean of node p-values; that is not a combined significance test. The manuscript does not identify the independent sample unit or how table SD and p-values are aggregated. Section 5.2.3 p.26 says IDRiD MedSAM relationships did not reach p<.05, but Table 4 reports Wasserstein optic-disc p=.0378. If the text is about cosine only, say so. The VLM IDRiD vessel p is printed .0000 in the table versus .0001 in prose; report rounding accurately after checking source values.
-3. **Table 6 scale/aggregation concern.** APTOS MedSAM lesion shows variance .0100×10^-4=10^-6 but SD .0010×10^-3=10^-6 in both columns. For a single repeated-score distribution Eq.19 requires SD=sqrt(variance)=10^-3. ODIR MedSAM optic disc has the same displayed variance but SD .0110×10^-3 or .0120×10^-3. These pairs do not satisfy Eq.19 as a single summary distribution. Separate averaging of variance and SD could change that relation, but would require an explicit aggregation rule and source records. No values were automatically corrected.
-4. **Table 3/Table 7 repeated pairs need source checking.** For example Table 7 VLM APTOS cosine R²/Rw² .5328/.5414, .5511/.5512 and .7362/.7343 exactly repeat Table 3 VLM HRF cosine ACC/F1. Table 7 VLM APTOS Wasserstein .4762/.4754, .5016/.5453 and .6316/.6562 repeat Table 3 VLM APTOS cosine ACC/F1. This is a possible copying/mapping problem, not proof of fabrication. Recover calculation outputs and table assembly source.
-5. **Figure 9 target ambiguity.** Page 32 labels axes actual/predicted confidence, while Eqs.6/10 and fidelity text define the regression target as confidence shift. M and V exploratory plotting cells differ in target treatment. Recover figure data and state whether panels show scores, shifts, or confidence reconstructed from shift. Some M plotted values are negative, reinforcing the need to check the axis semantics.
-6. **Figure 11 is not established as M44 output.** Manuscript Figure 11 includes an optic-disc series. The saved corrected M44 summary lacks optic-disc rows and its plotting code displays not-estimable panels when unavailable. M43 is another retained version; neither should be selected solely because it visually resembles a paper plot. Establish source cell/version, dataset and row-level inputs.
-7. **Implementation details missing from manuscript.** Page 20 says Table 1 summarises seeds, but no seed row is present. Preprocessing, kernel widths/normalisation, XGBoost parameters, train/test split and repeat counts, checkpoint revisions and exact subset identifiers remain undocumented at paper level. Legacy values are not automatically paper values. Clarify whether 2,000 perturbed samples means images shared between pathways or inference calls per pathway.
+1. **Table 4 locality dependence requires source confirmation.**  
+   The preserved historical MedSAM and VLM faithfulness cells use ordinary Pearson correlation on strength/shift inputs without explicit locality weighting. Table 4 reports different correlation values under cosine and Wasserstein conditions. The original final calculation, sample selection, aggregation procedure, and row-level outputs should therefore be retained or recovered before claiming that the historical notebooks reproduce Table 4.
 
-## Manuscript completion items
+2. **Table 4 significance aggregation requires documentation.**  
+   Historical code includes node-level p-value handling that does not by itself establish the aggregation procedure used in the manuscript table. The independent sample unit, aggregation level, standard-deviation calculation, and p-value procedure should be documented from the final experiment rather than inferred from legacy code.
 
-- Table 1 p.21: unresolved APTOS and ODIR citations `[?]`.
-- Code availability p.40: `[repository link]` placeholder remains. Working branch is private; do not promise current public access.
-- Author contributions p.41: four `[add confirmed contributions]` placeholders remain. Obtain genuine contributions; do not infer them from author order.
-- Confirm whether report aggregation is over images, nodes, concepts or repeats and identify uncertainty units. Ten images per dataset do not make every perturbation an independent clinical sample.
+3. **Table 6 scale and aggregation require source records.**  
+   Several displayed variance/standard-deviation pairs cannot be interpreted confidently as a single repeated-score distribution without knowing the aggregation procedure. Separate averaging of variances and standard deviations across images or concepts could produce different relationships, but this must be established from the actual experiment records rather than reconstructed by assumption.
 
-## Required resolution order
+4. **Table 3/Table 7 repeated displayed values require source checking.**  
+   Several displayed numerical pairs occur in both attribution and fidelity tables. Exact repetition is not proof of an error, but the final calculation outputs and table-assembly source should be retained so that the correspondence can be verified.
 
-Recover original row-level outputs, image IDs and figure/table assembly sources first. Determine which discrepancies are manuscript-description errors versus implementation errors. Then correct manuscript claims or run explicitly new evaluations with independent labels and documented protocols. Store new results separately as RE-RUN. The present transcribed tables remain unchanged as a record of the reviewed version. Manuscript claims still require review. The separately scoped final repository release is AMBER because it no longer claims to reproduce or validate these results.
+5. **Figure 9 target definition requires final source data.**  
+   The manuscript describes surrogate fidelity in terms of concept-response shifts, while historical exploratory plotting cells use different target representations in different places. The final Figure 9 data should establish explicitly whether the plotted quantity is concept-response shift, concept confidence, or confidence reconstructed from a predicted shift.
+
+6. **Figure 11 provenance remains incomplete in the historical notebooks.**  
+   The manuscript figure includes lesion, vessel, and optic-disc robustness. The preserved historical MedSAM robustness material does not unambiguously establish the complete final HRF figure source. The final figure-generating data and implementation should therefore be retained separately from the legacy notebook.
+
+7. **Some final execution details remain undocumented in preserved evidence.**  
+   The manuscript Table 1 documents the main experimental protocol, and the 40-image subset identifiers are now available in `data/manifests/paper_40_images.csv`. However, preprocessing details, kernel widths and any operational distance normalisation, final XGBoost hyperparameters, train/test split settings, repeat counts, exact model/checkpoint revisions, and the exact robustness image identifier remain to be established from the final experimental implementation where applicable.
+
+## Current manuscript completion and repository-alignment items
+
+- The previously missing APTOS and ODIR dataset citations are resolved in the current manuscript.
+- The repository URL is present in the current Code Availability statement.
+- The author-contribution section is completed in the current manuscript.
+- The 40-image evaluation subset is now documented in `data/manifests/paper_40_images.csv`.
+- Repository author metadata must be updated to include the seventh manuscript author, Mehran Hosseinalizadeh, in both `CITATION.cff` and `pyproject.toml`.
+- The manuscript title page assigns affiliation superscript `4` to Mehran Hosseinalizadeh, but affiliation 4 is not currently printed in the affiliation list. This should be completed using verified affiliation information.
+- Section 2.3 currently contains the grammatical form `Vision language model provide`; this should be corrected to `Vision--language models provide`.
+- Section 5.2.6 is still titled `Attribution Fidelity` even though the section defines and reports surrogate fidelity; the heading should be aligned with the manuscript terminology.
+- The Limitations section currently says `multiple segmentation models and vision–language model`; the final noun should be plural.
+- Confirm the aggregation unit used for tables reporting repeated or averaged results (for example image, concept, perturbation, or repeated run) and preserve that information alongside final row-level outputs.
+
+## Required repository resolution order
+
+1. Preserve the author-confirmed 40-image manifest as the canonical manuscript evaluation subset.
+2. Update repository author metadata so that it matches the seven-author manuscript.
+3. Preserve the legacy notebooks unchanged under `notebooks/legacy/`.
+4. Add or recover the final manuscript implementation separately from the historical notebooks.
+5. Retain final row-level outputs and figure-generation inputs for Tables 2–7 and Figures 9–11 where available.
+6. Record final model/checkpoint revisions, preprocessing settings, locality parameters, surrogate settings, split strategy, and repeat counts where they were used.
+7. Update repository traceability documents only when the supporting implementation or evidence is actually present.
+8. Do not relabel historical exploratory outputs as final manuscript evidence merely because they resemble the reported results.
+
+The repository remains **AMBER** while final implementation and result provenance are incomplete. The author-confirmed image manifest resolves the previous uncertainty concerning the 40-image evaluation subset, but it does not by itself resolve the remaining implementation and numerical-provenance gaps.
+
+Manuscript-transcribed tables should remain clearly labelled as such unless they are independently regenerated from the final manuscript implementation and supporting experimental records.
