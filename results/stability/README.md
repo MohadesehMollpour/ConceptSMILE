@@ -1,5 +1,22 @@
-# Historical stability evidence
+"""ConceptSMILE stability metric.
 
-Date/logo experiment inputs and implementation NOT AVAILABLE. Table5 is manuscript-transcribed only.
+Paper Eq. (17):
+J(A, B) = |A intersection B| / |A union B|
+"""
 
-See the sanitised notebooks, manuscript_transcribed/ and root traceability. No new result is claimed here.
+
+def jaccard_stability(original_explanation, modified_explanation):
+    original = set(original_explanation)
+    modified = set(modified_explanation)
+
+    union = original | modified
+
+    if len(union) == 0:
+        raise ValueError(
+            "Jaccard index is undefined when both "
+            "explanation sets are empty."
+        )
+
+    intersection = original & modified
+
+    return len(intersection) / len(union)
