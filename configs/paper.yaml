@@ -1,47 +1,52 @@
 # Manuscript-reported specification; NOT proof of historical execution.
 # Unknown execution settings remain null.
+
 provenance:
   category: MANUSCRIPT-TRANSCRIBED
   source: Moha___ConceptSMILE (1)(2).pdf
   source_pdf_sha256: c4a9c68fe7ae240530a6db9a3509d4116d94cd59976fec259b6ec71d2d87d992
   source_sections:
-  - '4.2'
-  - '4.3'
-  - '4.4'
-  - '4.5'
-  - '5.3'
+    - '4.2'
+    - '4.3'
+    - '4.4'
+    - '4.5'
+    - '5.3'
   source_pages:
-  - 14
-  - 15
-  - 16
-  - 17
-  - 18
-  - 19
-  - 20
-  - 21
-  - 33
-  - 35
+    - 14
+    - 15
+    - 16
+    - 17
+    - 18
+    - 19
+    - 20
+    - 21
+    - 33
+    - 35
   manuscript_verified: true
   historical_execution_verified: false
+
 project:
   name: ConceptSMILE
   seed: null
+
 preprocessing:
   image_size: null
   normalisation: null
+
 evaluation:
   datasets:
-  - HRF
-  - APTOS_2019
-  - ODIR_5K
-  - IDRiD
+    - HRF
+    - APTOS_2019
+    - ODIR_5K
+    - IDRiD
   images_per_dataset: 10
   total_images: 40
   concepts:
-  - lesion
-  - blood_vessels
-  - optic_disc
-  historical_manifest: null
+    - lesion
+    - blood_vessels
+    - optic_disc
+  historical_manifest: data/manifests/paper_40_images.csv
+
 perturbation:
   method: slic
   target_segments: 7
@@ -51,19 +56,22 @@ perturbation:
   unique_vectors: true
   exclude_all_masked: true
   fill_value: 0
+
 embedding:
   model: facebook/dinov2-base
   representation: cls_token
   revision: null
+
 locality:
   distances:
-  - cosine
-  - wasserstein
+    - cosine
+    - wasserstein
   kernel: exponential
   cosine_sigma: null
   wasserstein_sigma: null
   normalisation: null
   equation_9: exp(-(distance**2)/(sigma**2))
+
 surrogate:
   model: xgboost_regressor
   n_estimators: null
@@ -74,6 +82,7 @@ surrogate:
   reg_lambda: null
   test_size: null
   repeats: null
+
 models:
   medsam_checkpoint: null
   medsam_sha256: null
@@ -83,22 +92,24 @@ models:
   processor_revision: null
   qwen_do_sample: null
   qwen_max_new_tokens: null
+
 runtime:
   device: null
   dtype: null
   historical_environment: null
+
 robustness:
   reported_dataset: HRF
   contrast_factors:
-  - 0.6
-  - 0.8
-  - 1.0
-  - 1.2
-  - 1.4
+    - 0.6
+    - 0.8
+    - 1.0
+    - 1.2
+    - 1.4
   occlusion_percentages_retinal_width:
-  - 0
-  - 1
-  - 2
-  - 3
+    - 0
+    - 1
+    - 2
+    - 3
   historical_image_id: null
   repeats: null
