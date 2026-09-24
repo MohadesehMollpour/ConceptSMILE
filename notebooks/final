@@ -1,28 +1,74 @@
-# Final ConceptSMILE implementation
+# Final ConceptSMILE Implementation
 
-This directory is reserved for the final implementation corresponding to the
-submitted ConceptSMILE manuscript.
+This directory is reserved for implementation materials that correspond to the
+current ConceptSMILE manuscript:
 
-The final implementation should follow the experimental protocol reported in
-the manuscript, including:
+**ConceptSMILE: Auditing the Trustworthiness of Concept-Based Explainable AI**
 
-- four retinal datasets: HRF, APTOS 2019, ODIR-5K, and IDRiD;
-- 10 selected images per dataset (40 images in total);
+The material placed here should represent the manuscript-aligned implementation
+and must remain clearly separated from the historical exploratory notebooks stored
+under `../legacy/`.
+
+## Manuscript-reported experimental protocol
+
+The current manuscript reports an evaluation using:
+
+- four retinal fundus datasets: HRF, APTOS 2019, ODIR-5K, and IDRiD;
+- 10 selected images from each dataset, giving 40 images in total;
 - three retinal concepts: lesion, blood vessels, and optic disc;
-- SLIC superpixels with target segments = 7;
+- SLIC superpixels with a target of 7 segments;
 - 50 unique binary superpixel perturbations per image;
 - exclusion of the all-masked perturbation;
 - black masking of removed superpixels;
 - `facebook/dinov2-base` CLS-token embeddings for locality computation;
-- cosine and Wasserstein distance;
+- cosine and Wasserstein distances;
 - exponential locality weighting;
 - a fixed structured JSON prompt for the VLM pathway; and
 - XGBoost as the local surrogate model.
 
-The historical exploratory notebooks remain in `../legacy/` and are retained
-for provenance. They should not be interpreted as the final manuscript
-implementation.
+The author-confirmed evaluation image identifiers are recorded in:
 
-Final experiment notebooks, configuration, image manifests, and result files
-will be added here only when they can be verified against the experiments
-reported in the manuscript.
+`../../data/manifests/paper_40_images.csv`
+
+The manuscript-reported configuration is documented in:
+
+`../../configs/paper.yaml`
+
+## Provenance
+
+The notebooks in `../legacy/` are preserved historical research artefacts. They
+contain exploratory implementations and settings that do not fully correspond to
+the final manuscript protocol.
+
+They must therefore not be modified or relabelled to imply that they generated
+the complete manuscript results.
+
+This directory provides a separate location for verified manuscript-aligned
+implementation materials.
+
+## What may be added here
+
+Final experiment notebooks, scripts, configuration files, environment information,
+and related execution records should be added only when their correspondence with
+the manuscript protocol can be verified.
+
+Where experimental settings or historical execution details are unknown, they
+should remain explicitly unknown rather than being inferred from the legacy
+notebooks.
+
+Adding implementation material to this directory does not by itself establish
+reproduction of the manuscript results. Complete empirical reproduction would also
+require the corresponding verified execution settings, row-level outputs, and
+table/figure source data.
+
+## Current status
+
+A complete independently verified end-to-end implementation of the reported
+four-dataset experiments has not yet been established in this directory.
+
+The repository therefore continues to distinguish between:
+
+1. the manuscript-reported protocol and results;
+2. preserved historical notebooks under `../legacy/`;
+3. reconstructed reusable software under `../../src/conceptsmile/`; and
+4. verified final implementation material added here when available.
