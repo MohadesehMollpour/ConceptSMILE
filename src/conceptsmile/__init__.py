@@ -1,5 +1,17 @@
-# Provenance: RECONSTRUCTED reusable code; historical execution not established.
-"""ConceptSMILE reusable research-software components."""
+"""ConceptSMILE acquisition-robustness utilities.
 
-__version__ = "0.1.0.dev0"
+This package contains utilities for the additional robustness
+analysis reported in Section 5.3 of the manuscript.
+"""
 
+from .acquisition import (
+    add_simulated_occlusion,
+    modify_retinal_contrast,
+    retinal_fov_mask,
+)
+
+__all__ = [
+    "add_simulated_occlusion",
+    "modify_retinal_contrast",
+    "retinal_fov_mask",
+]
