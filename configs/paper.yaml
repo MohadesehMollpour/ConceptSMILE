@@ -3,8 +3,8 @@
 
 provenance:
   category: MANUSCRIPT-TRANSCRIBED
-  source: Moha___ConceptSMILE (1)(2).pdf
-  source_pdf_sha256: c4a9c68fe7ae240530a6db9a3509d4116d94cd59976fec259b6ec71d2d87d992
+  source: Moha___ConceptSMILE (16).pdf
+  source_pdf_sha256: 9178fc53e22cc259142915264e9d52c8d7769c6aa8ec820b10057d743d90470c
   source_sections:
     - '4.2'
     - '4.3'
@@ -20,8 +20,9 @@ provenance:
     - 19
     - 20
     - 21
-    - 33
     - 35
+    - 36
+    - 37
   manuscript_verified: true
   historical_execution_verified: false
 
