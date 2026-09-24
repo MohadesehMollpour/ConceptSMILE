@@ -12,6 +12,12 @@ Simulated occlusion:
 Robustness outcome:
     repeated XGBoost Test R² values,
     summarised using mean, median, and standard deviation.
+
+Important:
+    The manuscript does not specify the degrees-of-freedom
+    convention used for the robustness standard deviation.
+    Therefore, ddof must be supplied explicitly rather than
+    inferred.
 """
 
 from __future__ import annotations
@@ -46,6 +52,7 @@ class RobustnessMetrics:
     median_r2: float
     standard_deviation: float
     n_runs: int
+    ddof: int
 
 
 def evaluate_test_r2(
@@ -87,14 +94,26 @@ def evaluate_test_r2(
 
 def summarise_robustness(
     test_r2_values: np.ndarray,
+    *,
+    ddof: int,
 ) -> RobustnessMetrics:
     """Summarise repeated Test R² values.
 
-    The manuscript displays:
-    - individual repeated evaluations;
-    - mean;
-    - median; and
-    - mean ± standard deviation.
+    Parameters
+    ----------
+    test_r2_values:
+        Repeated Test R² values for one robustness condition.
+
+    ddof:
+        Degrees of freedom used when calculating the standard
+        deviation. This must be supplied explicitly because the
+        manuscript does not specify the convention.
+
+    Returns
+    -------
+    RobustnessMetrics
+        Mean, median, standard deviation, number of runs,
+        and the supplied ddof.
     """
 
     values = np.asarray(
@@ -109,6 +128,21 @@ def summarise_robustness(
             "At least one valid Test R² value is required."
         )
 
+    if not isinstance(ddof, int):
+        raise TypeError(
+            "ddof must be an integer."
+        )
+
+    if ddof < 0:
+        raise ValueError(
+            "ddof must be non-negative."
+        )
+
+    if ddof >= len(values):
+        raise ValueError(
+            "ddof must be smaller than the number of valid runs."
+        )
+
     mean_r2 = float(
         np.mean(values)
     )
@@ -117,16 +151,17 @@ def summarise_robustness(
         np.median(values)
     )
 
-    if len(values) < 2:
-        standard_deviation = float("nan")
-    else:
-        standard_deviation = float(
-            np.std(values, ddof=1)
+    standard_deviation = float(
+        np.std(
+            values,
+            ddof=ddof,
         )
+    )
 
     return RobustnessMetrics(
         mean_r2=mean_r2,
         median_r2=median_r2,
         standard_deviation=standard_deviation,
         n_runs=len(values),
+        ddof=ddof,
     )
