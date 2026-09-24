@@ -20,7 +20,6 @@ from .faithfulness import FaithfulnessMetrics, evaluate_faithfulness
 from .fidelity import FidelityMetrics, evaluate_fidelity, weighted_mean
 from .stability import StabilityMetrics, evaluate_stability, jaccard_index
 
-
 __all__ = [
     "AttributionMetrics",
     "ConsistencyMetrics",
