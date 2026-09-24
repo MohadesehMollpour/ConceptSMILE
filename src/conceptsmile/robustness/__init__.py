@@ -10,8 +10,22 @@ from .acquisition import (
     retinal_fov_mask,
 )
 
+from .evaluation import (
+    CONTRAST_FACTORS,
+    OCCLUSION_PERCENTAGES,
+    RobustnessMetrics,
+    evaluate_test_r2,
+    summarise_robustness,
+)
+
+
 __all__ = [
+    "CONTRAST_FACTORS",
+    "OCCLUSION_PERCENTAGES",
+    "RobustnessMetrics",
     "add_simulated_occlusion",
+    "evaluate_test_r2",
     "modify_retinal_contrast",
     "retinal_fov_mask",
+    "summarise_robustness",
 ]
