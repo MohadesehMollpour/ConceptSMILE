@@ -15,24 +15,61 @@ from conceptsmile.perturbation.superpixels import (
 
 def main() -> int:
     image = np.full((4, 4, 3), 255, dtype=np.uint8)
-    segments = np.repeat(np.arange(4).reshape(2, 2), 2, axis=0)
-    segments = np.repeat(segments, 2, axis=1)
-    vectors = sample_binary_perturbations(4, 6, seed=42)
-    perturbed = apply_superpixel_perturbation(image, segments, vectors[0])
 
-    distances = cosine_distance(np.array([1.0, 0.0]), np.array([[1.0, 0.0], [0.0, 1.0]]))
-    weights, _ = exponential_kernel(distances, sigma=0.25)
+    segments = np.repeat(
+        np.arange(4).reshape(2, 2),
+        2,
+        axis=0,
+    )
+    segments = np.repeat(
+        segments,
+        2,
+        axis=1,
+    )
+
+    vectors = sample_binary_perturbations(
+        4,
+        6,
+        seed=42,
+    )
+
+    perturbed = apply_superpixel_perturbation(
+        image,
+        segments,
+        vectors[0],
+    )
+
+    distances = cosine_distance(
+        np.array([1.0, 0.0]),
+        np.array(
+            [
+                [1.0, 0.0],
+                [0.0, 1.0],
+            ]
+        ),
+    )
+
+    weights, _ = exponential_kernel(
+        distances,
+        sigma=0.25,
+    )
+
     metrics = evaluate_fidelity(
-        np.array([0.0, 1.0]), np.array([0.0, 0.9]), np.array([1.0, 0.5])
+        np.array([0.0, 1.0]),
+        np.array([0.0, 0.9]),
+        np.array([1.0, 0.5]),
     )
 
     print("vectors", vectors.shape)
-    print("masked_pixels", int(np.count_nonzero(perturbed == 0)))
+    print(
+        "masked_pixels",
+        int(np.count_nonzero(perturbed == 0)),
+    )
     print("weights", weights.tolist())
-    print("fidelity", metrics.to_dict())
+    print("fidelity", metrics)
+
     return 0
 
 
 if __name__ == "__main__":
     raise SystemExit(main())
-
