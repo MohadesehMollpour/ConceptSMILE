@@ -38,10 +38,12 @@ def test_vlm_token_parser_matches_notebook_rule():
     result = extract_confidences_from_token_scores(rows)
 
     assert result["blood_vessels"]["confidence"] == 0.9
+
     assert np.isclose(
         result["lesion"]["confidence"],
         0.2,
     )
+
     assert result["optic_disc"]["confidence"] == 0.7
 
 
@@ -145,7 +147,10 @@ def test_robustness_summary():
         [0.5, 0.7, 0.9]
     )
 
-    result = summarise_robustness(values)
+    result = summarise_robustness(
+        values,
+        ddof=1,
+    )
 
     assert np.isclose(
         result.mean_r2,
@@ -163,3 +168,4 @@ def test_robustness_summary():
     )
 
     assert result.n_runs == 3
+    assert result.ddof == 1
