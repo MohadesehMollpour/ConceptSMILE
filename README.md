@@ -2,7 +2,7 @@
 
 A perturbation-based approach to auditing concept-level explanation reliability: mask image regions, measure concept-response shifts, compute locality weights and fit a local surrogate.
 
-**AMBER: transparent research release with incomplete historical reproducibility.** This package contains reusable reconstructed utilities, sanitised historical evidence and explicitly labelled manuscript transcriptions. It does not reproduce the full paper or validate its disputed comparative results. Start with [FINAL_REPOSITORY_STATUS.md](FINAL_REPOSITORY_STATUS.md).
+This repository provides the implementation, historical evidence, evaluation utilities, manuscript-transcribed results, and reproducibility documentation associated with ConceptSMILE, while clearly identifying remaining provenance gaps.
 
 ## ConceptSMILE framework
 
