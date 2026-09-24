@@ -1,49 +1,186 @@
 # Manuscript–code traceability
 
-Repository release status: **AMBER**; scientific discrepancies remain unresolved. The 46-page manuscript identified in `paper/README.md` has now been reviewed. Manuscript statements are verified as reported, not verified as executed. Detailed page/equation correspondence and new discrepancies are in `docs/audits/manuscript-review.md`. M = `notebooks/legacy/medsam_odir_single_image_experiment.ipynb`; V = `notebooks/legacy/vlm_odir_single_image_experiment.ipynb`. Cell indices are zero-based. Plain-text outputs remain inside sanitised notebook derivatives; rich/image outputs were omitted with hashes and are indexed in `results/preserved/notebook_output_index.csv`.
+Repository release status: **AMBER**; scientific and reproducibility gaps remain unresolved.
 
-PRESERVED means historical source/plain-text evidence retained; notebook derivatives are sanitised and not byte-identical to originals, not independently authenticated ORIGINAL code. All reusable `src/conceptsmile/` implementations are RECONSTRUCTED, including inherited code. No retinal results are RE-RUN in this audit.
+The current 49-page manuscript identified in `paper/README.md` has been reviewed.
+Manuscript statements are treated as verified **as reported**, not automatically verified
+as historically executed.
 
-| Component / claim | Preserved implementation and configuration | Reusable implementation | Inputs → outputs / publication correspondence | Assessment |
+Detailed manuscript/evidence correspondence is documented in
+`docs/audits/manuscript-review.md`.
+
+Historical notebook references used below are:
+
+- **M** = `notebooks/legacy/medsam_odir_single_image_experiment.ipynb`
+- **V** = `notebooks/legacy/vlm_odir_single_image_experiment.ipynb`
+
+Cell indices are zero-based.
+
+Plain-text outputs remain inside sanitised notebook derivatives. Rich/image outputs were
+removed during sanitisation, with preservation information recorded in
+`docs/audits/preservation_manifest.csv` and
+`results/preserved/notebook_output_index.csv`.
+
+`PRESERVED` means historical source/plain-text evidence retained. The notebook
+derivatives are sanitised and are not claimed to be byte-identical authenticated
+original experiment files.
+
+Reusable implementations under `src/conceptsmile/` are classified as
+`RECONSTRUCTED` unless otherwise documented.
+
+No complete four-dataset retinal experiment has been independently `RE-RUN` as part
+of this audit.
+
+The author-confirmed manuscript evaluation subset is now documented separately in:
+
+`data/manifests/paper_40_images.csv`
+
+This resolves the previous uncertainty about the 40 evaluation image identifiers but
+does not, by itself, establish complete historical execution provenance.
+
+## Manuscript protocol versus preserved implementation
+
+| Component / claim | Preserved implementation and configuration | Reusable / current repository evidence | Publication correspondence | Assessment |
 | --- | --- | --- | --- | --- |
-| Preprocessing | M0 long side 1024; V image resized 384×384; legacy YAML | No unified loader | ODIR mirror image1/image1001 → image arrays; §4.1/4.5, pp.13–14/20–21 | AMBER: pathway-specific; four-dataset pipeline absent |
-| SLIC target 7 | M16 requests 12, output 6; V7 requests/output 7 | perturbation/superpixels.py | Image → label map; Table 1 p.21; paper.yaml manuscript-reported | RED: M conflicts with requested paper protocol |
-| 50 unique perturbations | M16 no deduplication; V8 deduplicates | sample_binary_perturbations | Region count → binary keep vectors | RED for M uniqueness; actual SLIC count must permit 50 states |
-| All-zero exclusion / black masking | M16, V8 retain one region after zero draw and black-mask removed regions | sampler and apply_superpixel_perturbation | Vector → masked image | AMBER: preserved protocol; not uniform rejection sampling |
-| Concept extraction / response | M7–12,17–24 heuristic prompts, mean mask probability; V4–6,9,12 fixed prompt and generated-token probabilities | concepts/medsam.py and vlm.py are helpers only | Original and perturbed responses → shifts | AMBER: no verified complete adapter or model revisions |
-| MedSAM model | M1–5 SAM vit_b then medsam_vit_b.pth; strict=False output zero missing/unexpected | Mask and pooled-embedding helpers | Checkpoint file → masks; hash unknown | AMBER: known filename is not checkpoint authentication |
-| Qwen model | V3 local qwen25vl_3b_local, float16, auto placement; processor from same folder | Token parser | Generated answer token → probability heuristic | AMBER: no exact checkpoint/tokenizer revision; 1−P(no) is not calibrated P(yes) |
-| DINOv2 CLS | V10–11 facebook/dinov2-base; M25/34 use pooled MedSAM encoder | embeddings/dinov2.py | Images → embeddings | RED: common embedding claim not supported for M |
-| Cosine locality | M25 median positive distance width; V11 fixed 0.25 | locality/distances.py | Embeddings → 1−cosine, exp(−d²/sigma²) | AMBER: pathway-specific settings |
-| Wasserstein locality | M34; V20, one-dimensional distribution of embedding components | wasserstein_embedding_distance / locality_weights | Distances min-max scaled → exp(−d²/(2×0.75²)) | AMBER: component distributions discard coordinate matching; not spatial transport |
-| XGBoost / fidelity | M27,36,45; V14,22,27, repeat splits 42+repeat, 30 repeats, test fraction .30 | surrogate/xgboost_surrogate.py; metrics/fidelity.py | Keep vectors and response shifts → held-out prediction metrics | AMBER: notebook single-image evidence, not four-dataset aggregates |
-| Attribution ACC/F1/AUROC | M30/38 labels affected original predicted-mask fraction ≥.10; V18/23 labels same-score 75th percentile | metrics/attribution.py requires supplied labels | Reference and score → metrics | RED: V circular and misaligned; M masks model-derived, not independent expert ground truth; same-sample threshold optimisation |
-| Pearson faithfulness | M42 uses predicted-mask affected pixels; V17/25 overall fraction of removed superpixels | metrics/faithfulness.py | Affected fraction and absolute shift → correlation | RED if V described as concept-specific; M reference also model-dependent; mean node p-values not a combined significance test |
-| Stability / date and logo | No experiment located | metrics/stability.py Jaccard helper only | Explanation-set inputs absent; Table 5 p.29 | RED: helper does not reproduce artefact study |
-| Consistency | M27/36/37; V14/22: variance/std of R² and weighted R² | metrics/consistency.py generic sample statistics | Repeated scores → variance/std | RED: no repeated importance-score provenance |
-| Contrast / blink robustness, M | M43 earlier, M44 labelled corrected with saved summary/figures; legacy conditions .6–1.4 and 0–3% | robustness/acquisition.py artefact utilities only | ODIR single image → repeated Test R²; row-level CSV paths printed, files absent | AMBER: preserved display, not authenticated publication plot; optic-disc rows absent in M44 summary |
-| Contrast / blink robustness, V | V26 restores model for a future robustness cell; V27 is surrogate comparison | No full VLM robustness driver | Result inputs unavailable | RED: restoration cell is not robustness experiment |
+| Evaluation subset | Legacy notebooks contain individual ODIR examples rather than the complete four-dataset subset | `data/manifests/paper_40_images.csv` contains the author-confirmed 40-image evaluation subset: 10 images each from HRF, APTOS 2019, ODIR-5K, and IDRiD | Table 1, p.21 | AMBER: subset identifiers now documented; complete historical execution still not independently verified |
+| Preprocessing | M0 uses long side 1024; V uses 384×384 resizing | No single verified final four-dataset loader currently establishes all manuscript preprocessing details | §4.1 and §4.5 | AMBER: pathway-specific historical preprocessing; final preprocessing details remain incomplete |
+| SLIC target 7 | M16 requests 12 and retained output shows six realised segments; V7 requests/outputs 7 | `perturbation/superpixels.py`; `configs/paper.yaml` records manuscript target 7 | Table 1, p.21 | RED for legacy MedSAM correspondence: M does not implement the manuscript-reported target-7 protocol |
+| 50 unique perturbations | M16 samples without demonstrated deduplication; V8 deduplicates perturbation vectors | `sample_binary_perturbations`; paper config records 50 unique vectors | Table 1, p.21 | RED for legacy M uniqueness; legacy notebook cannot be treated as final paper implementation |
+| All-zero exclusion | M16/V8 historically repair an all-zero draw by retaining a region rather than clearly resampling until nonzero | Reconstructed sampler can enforce exclusion explicitly | Table 1, p.21 | AMBER: manuscript says all-masked perturbation excluded; legacy operational handling differs |
+| Black masking | M16 and V8 black-mask removed regions | `apply_superpixel_perturbation` | Table 1, p.21 | Supported at method level |
+| Concept extraction / response | M7–12 and M17–24 use MedSAM-related heuristic concept extraction; V4–6, V9 and V12 use structured semantic prompting/generated-token responses | `concepts/medsam.py` and `concepts/vlm.py` provide reusable helpers | §4.1–4.2 | AMBER: helper-level support exists, but complete final model adapters/revisions are not established |
+| MedSAM model | M1–5 reference SAM ViT-B and `medsam_vit_b.pth`; saved load output reports zero missing/unexpected keys | Mask and pooled-embedding helpers retained | MedSAM pathway | AMBER: checkpoint filename is preserved, but exact historical bytes/hash/revision remain unavailable |
+| Qwen model | V3 references local `qwen25vl_3b_local`, float16, automatic placement, and processor from the same local folder | Token-response parsing utilities retained | VLM pathway | AMBER: exact model/tokenizer/processor revisions remain unavailable |
+| Fixed VLM prompt | Preserved VLM notebook contains structured prompting logic | Final prompt implementation has not yet been independently established as the exact four-dataset paper execution | Table 1, p.21 | AMBER: historical structured prompting exists; complete final execution provenance remains incomplete |
+| DINOv2 CLS embedding | V10–11 use `facebook/dinov2-base` with CLS extraction; M25/M34 instead use pooled MedSAM image-encoder representations | `embeddings/dinov2.py`; `configs/paper.yaml` records DINOv2 CLS | Table 1, p.21 | RED for legacy M correspondence: common DINOv2 locality representation is not supported by the retained M notebook |
+| Cosine locality | M25 uses a median-positive-distance width; V11 uses a fixed value of 0.25 | `locality/distances.py` | §4.3 | AMBER: historical pathways use different operational kernel settings |
+| Wasserstein locality | M34 and V20 use one-dimensional Wasserstein comparison over embedding components and historical min-max scaling | `wasserstein_embedding_distance` and locality-weight helpers | §4.3 | AMBER: historical normalisation/kernel-width details are not fully specified by the manuscript |
+| Locality kernel | Historical implementations include exponential distance weighting but with pathway-specific operational settings | `configs/paper.yaml` records manuscript equation `exp(-(distance**2)/(sigma**2))` | Eq.9, §4.3 | AMBER: broad formulation corresponds; exact final widths/normalisation remain unresolved |
+| XGBoost surrogate | M27/M36/M45 and V14/V22/V27 contain XGBoost surrogate fitting; historical repeats use split seeds based on 42+repeat and test fraction 0.30 | `surrogate/xgboost_surrogate.py` and `metrics/fidelity.py` | Eq.10, §4.3 | AMBER: single-image historical evidence exists; final four-dataset hyperparameters and split procedure are not fully established |
+| Attribution ACC/F1/AUROC | M30/M38 derive labels from affected fractions of original model-predicted masks; V18/V23 derive labels from the same response-shift scores and contain a positional alignment issue | `metrics/attribution.py` accepts supplied labels | Table 3, pp.25–26 | RED for historical empirical interpretation: preserved references are not independent expert ground truth |
+| Pearson faithfulness | M42 uses affected fraction of model-predicted masks; V17/V25 use overall removed-superpixel fraction | `metrics/faithfulness.py` | Table 4, p.27 | RED if historical VLM calculation is interpreted as concept-specific evidence removal; exact final Table 4 provenance remains incomplete |
+| Stability / date and logo | No complete preserved date/logo experiment was located | `metrics/stability.py` provides a generic Jaccard helper | Table 5, p.29 | RED for reproduction: helper alone does not reproduce the manuscript artefact study |
+| Consistency | M27/M36/M37 and V14/V22 report variance/SD of repeated R²-type surrogate metrics | `metrics/consistency.py` provides generic sample-statistics helpers | Table 6, p.31 | RED for historical correspondence: repeated concept-importance records supporting manuscript Eqs.18–19 have not been recovered |
+| Contrast / blink robustness, MedSAM | M43 earlier and M44 corrected version contain contrast/occlusion evaluation; historical conditions span 0.6–1.4 contrast and 0–3% occlusion | `robustness/acquisition.py` provides artefact utilities | §5.3; Fig.11, p.37 | AMBER: preserved experiment uses ODIR rather than the representative HRF image reported in the manuscript; retained M44 summary also lacks complete optic-disc evidence |
+| Contrast / blink robustness, VLM | V26 restores a model for a future robustness cell; V27 is a surrogate comparison rather than a complete robustness experiment | No complete preserved VLM robustness driver | §5.3; Fig.10, p.36 | RED for reproduction: model restoration is not evidence of the full reported robustness experiment |
 
-## Additional implementation issue
+## Additional historical implementation issue
 
-V12 constructs `node_compare_df` in perturbation-major order (three concepts per perturbation). V18 and V23 iterate `groupby(node_name)` and append labels concept by concept, then assign the list positionally to the original frame. This breaks row alignment in addition to the circular reference definition. Saved AUROC values below 1 must not be interpreted as resolving circularity. Historical cells remain untouched; independent labels and correctly keyed alignment are required for a new evaluation.
+V12 constructs `node_compare_df` in perturbation-major order, with concepts represented
+within perturbations.
+
+V18 and V23 iterate using `groupby(node_name)`, create labels concept-by-concept, and
+then assign the resulting label sequence positionally to the original frame.
+
+This introduces a row-alignment problem in addition to the self-referential nature of
+the historical VLM attribution reference.
+
+Therefore, saved historical AUROC values must not be interpreted as resolving the
+reference-definition problem.
+
+The historical notebook cells remain preserved unchanged. Any new attribution
+evaluation should use independently justified reference labels with explicit keyed row
+alignment.
 
 ## Publication result register
 
-| Item | Manuscript location and meaning | Preserved evidence | Provenance / reproduction status |
+| Item | Current manuscript location / meaning | Preserved or current repository evidence | Provenance / reproduction status |
 | --- | --- | --- | --- |
-| Table 1 | §4.5, p.21 protocol | Legacy configs differ | MANUSCRIPT-TRANSCRIBED into paper.yaml; execution not verified |
-| Table 2 | §5.2.1, p.23 surrogate selection | M45/V27 single-image displays differ from aggregate table | CSV MANUSCRIPT-TRANSCRIBED; original aggregate bundle missing |
-| Table 3 | §5.2.2, p.25 attribution | M30/31/38/39, V18/23; reference defects | CSV MANUSCRIPT-TRANSCRIBED; RED empirical validity/provenance |
-| Table 4 | §5.2.3, p.27 Pearson faithfulness | M42/V25; no weighted correlation; aggregate provenance absent | CSV MANUSCRIPT-TRANSCRIBED; RED locality/p-value interpretation |
-| Table 5 | §5.2.4, p.29 date/logo stability | No original set inputs or experiment | CSV MANUSCRIPT-TRANSCRIBED; RED missing provenance |
-| Table 6 | §5.2.5, p.31 consistency | R² statistics differ from Eqs.18–19 importance semantics | CSV MANUSCRIPT-TRANSCRIBED with displayed scaling; RED |
-| Table 7 | §5.2.6, p.34 fidelity | Single-image code, no four-dataset source bundle | CSV MANUSCRIPT-TRANSCRIBED; RED aggregate provenance; repeated table pairs flagged |
-| Figure 9 | §5.2.6, p.32 four-dataset actual/predicted fidelity panels | Exploratory M/V plots; full panel data absent | PRESERVED manuscript figure; target confidence/shift ambiguity; no numerical reconstruction |
-| Figure 10 | §5.3, p.35 VLM robustness | V26 model restoration is not full experiment | PRESERVED manuscript figure; RED missing driver/data |
-| Figure 11 | §5.3, p.35 MedSAM robustness | M43/44 retained; M44 lacks plotted optic-disc results | PRESERVED manuscript figure; exact source version/HRF identity unresolved |
-| Figures 1–8 | pp.4,6,8,13,14,17,18,22 conceptual/qualitative figures | One framework raster plus notebook images | Latest publication locations verified; generation/source provenance incomplete |
+| Table 1 | §4.5, p.21; experimental protocol and reproducibility settings | `configs/paper.yaml`; author-confirmed `data/manifests/paper_40_images.csv`; legacy notebooks contain conflicting historical settings | MANUSCRIPT-TRANSCRIBED protocol; 40-image identifiers now documented; complete execution not independently verified |
+| Table 2 | §5.2.1, p.24; surrogate/locality comparison | M45/V27 contain single-image surrogate comparisons that do not establish the four-dataset aggregate table | CSV remains MANUSCRIPT-TRANSCRIBED; original aggregate result bundle not recovered |
+| Table 3 | §5.2.2, pp.25–26; concept-level attribution accuracy | M30/M31/M38/M39 and V18/V23 contain historical attribution calculations with reference/alignment limitations | CSV MANUSCRIPT-TRANSCRIBED; independent empirical reproduction not established |
+| Table 4 | §5.2.3, p.27; faithfulness | M42/V25 contain historical Pearson calculations; preserved code does not establish the reported locality-dependent aggregate table | CSV MANUSCRIPT-TRANSCRIBED; final sample/aggregation/p-value provenance unresolved |
+| Table 5 | §5.2.4, p.29; date/logo stability | Generic Jaccard helper exists; original explanation sets and complete experiment not recovered | CSV MANUSCRIPT-TRANSCRIBED; empirical reproduction not established |
+| Table 6 | §5.2.5, p.31; repeated-run consistency | Historical notebooks contain R²-dispersion statistics rather than clearly documented repeated concept-importance arrays | CSV MANUSCRIPT-TRANSCRIBED with displayed scaling; final aggregation/source records unresolved |
+| Table 7 | §5.2.6, p.34; surrogate fidelity | Historical single-image surrogate code exists but no complete four-dataset final output bundle has been recovered | CSV MANUSCRIPT-TRANSCRIBED; aggregate reproduction not established; repeated displayed pairs remain flagged for source checking |
+| Figure 9 | §5.2.6, pp.32–33; observed versus surrogate-predicted concept-response shifts across four datasets | Historical exploratory M/V plots use mixed target handling; complete four-dataset plotting inputs are absent | Manuscript figure preserved for documentation; final point-level source data and exact target-generation pipeline remain unresolved |
+| Figure 10 | §5.3, p.36; VLM robustness under contrast variation and simulated blink-related occlusion | V26 restores a model but does not contain the complete reported robustness experiment | Manuscript figure preserved; full driver and underlying result data not independently reproduced |
+| Figure 11 | §5.3, p.37; MedSAM robustness under contrast variation and simulated blink-related occlusion | M43/M44 retained; preserved experiment uses ODIR, and M44 does not provide complete optic-disc evidence corresponding to the manuscript figure | Manuscript figure preserved; exact final HRF source image, execution version, and row-level data remain unresolved |
+| Figures 1–8 | Conceptual, methodological, and qualitative figures preceding the quantitative result figures | Framework material and selected notebook-derived visual material are retained under `figures/` | Documentation/provenance available only to the extent recorded in `figures/README.md`; inclusion does not prove experimental reproduction or redistribution rights |
 
-Table CSVs in `results/manuscript_transcribed/` retain published precision and all questionable entries. They are not computed reproductions. Framework raster matching and figure provenance are described in `figures/framework/README.md`. No figure was digitised to invent point-level results.
+## Figure 9 target traceability
 
-Current exact metric labels and resolution of Figure9 target candidates are in docs/scientific_provenance.md and docs/audits/final-scientific-audit.md. Red cells in the component table concern scientific evidence, not the separately assessed AMBER package scope.
+The current manuscript explicitly describes Figure 9 as comparing observed
+concept-response shifts with values predicted by the local XGBoost surrogate.
+
+The preserved historical notebooks do not provide one uniform plotting implementation
+that can be confidently identified as the complete final Figure 9 source.
+
+Historical VLM cells include both perturbed-confidence and response-shift target
+treatments, while historical MedSAM plotting uses response shifts.
+
+For this reason, the current manuscript interpretation is recorded as the reported
+final specification, while the historical exploratory notebook implementations remain
+separately documented rather than being relabelled as the final figure-generation code.
+
+## Evaluation subset traceability
+
+The manuscript reports:
+
+- four datasets: HRF, APTOS 2019, ODIR-5K, and IDRiD;
+- 10 images from each dataset;
+- 40 retinal fundus images in total.
+
+The author-confirmed identifiers are now stored in:
+
+`data/manifests/paper_40_images.csv`
+
+The manifest is linked from:
+
+`configs/paper.yaml`
+
+This resolves the earlier repository statement that the exact 40-image selection was
+unavailable.
+
+The manifest intentionally leaves `source_filename` blank where an exact original
+filename or extension has not been independently verified.
+
+The manifest should therefore be treated as the canonical author-confirmed evaluation
+identifier list, not as independent proof that every historical notebook/output bundle
+was executed against that exact subset.
+
+## Current provenance interpretation
+
+Table CSV files under:
+
+`results/manuscript_transcribed/`
+
+retain the values and precision reported in the manuscript.
+
+They are not labelled as computed reproductions unless a genuine rerun and supporting
+row-level outputs are subsequently added.
+
+Framework and figure provenance are documented under `figures/`.
+
+Metric interpretation, historical evidence limitations, and unresolved numerical
+provenance are further documented in:
+
+- `docs/scientific_provenance.md`
+- `docs/audits/manuscript-review.md`
+- `docs/audits/final-scientific-audit.md`
+- `docs/reproducibility.md`
+
+Individual **RED** assessments in the component table refer to specific scientific
+traceability or historical-implementation conflicts. They do not change the separately
+defined overall repository release status of **AMBER**.
+
+## Current repository principle
+
+The repository distinguishes three different things that must not be conflated:
+
+1. **The manuscript-reported final protocol and results.**
+2. **Historical exploratory notebook evidence preserved under `notebooks/legacy/`.**
+3. **Reusable reconstructed code and the developing final implementation area.**
+
+Legacy notebook settings must not be modified merely to make them appear to have
+generated the manuscript results.
+
+Final manuscript implementation should instead be stored separately under
+`notebooks/final/` and should follow the manuscript-reported protocol.
+
+Where final execution settings or source records are unknown, they must remain explicitly
+unknown until genuine evidence is recovered.
+
+The author-confirmed 40-image manifest may be used as the final evaluation subset
+reference, but it does not convert legacy single-image notebooks into verified
+four-dataset manuscript reproductions.
