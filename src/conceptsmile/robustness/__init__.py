@@ -9,7 +9,6 @@ from .acquisition import (
     modify_retinal_contrast,
     retinal_fov_mask,
 )
-
 from .evaluation import (
     CONTRAST_FACTORS,
     OCCLUSION_PERCENTAGES,
@@ -17,7 +16,6 @@ from .evaluation import (
     evaluate_test_r2,
     summarise_robustness,
 )
-
 
 __all__ = [
     "CONTRAST_FACTORS",
