@@ -8,6 +8,7 @@ version = "0.1.0.dev0"
 description = "Reusable components for auditing concept-based explanations with ConceptSMILE"
 readme = "README.md"
 requires-python = ">=3.10"
+
 authors = [
   { name = "Mohadeseh Mollapour" },
   { name = "Koorosh Aslansefat" },
@@ -15,7 +16,9 @@ authors = [
   { name = "Bhupesh Kumar Mishra" },
   { name = "Tejal Shah" },
   { name = "Zhibao Mian" },
+  { name = "Mehran Hosseinalizadeh" },
 ]
+
 keywords = [
   "concept-based-xai",
   "explainable-ai",
@@ -23,6 +26,7 @@ keywords = [
   "retinal-imaging",
   "reproducibility",
 ]
+
 classifiers = [
   "Development Status :: 3 - Alpha",
   "Intended Audience :: Science/Research",
@@ -31,6 +35,7 @@ classifiers = [
   "Programming Language :: Python :: 3.11",
   "Topic :: Scientific/Engineering :: Artificial Intelligence",
 ]
+
 dependencies = [
   "numpy>=1.24",
   "Pillow>=10.0",
@@ -51,11 +56,13 @@ models = [
   "torch>=2.1",
   "transformers>=4.49",
 ]
+
 dev = [
   "build>=1.0",
   "pytest>=8.0",
   "ruff>=0.6",
 ]
+
 docs = [
   "mkdocs>=1.6",
   "mkdocs-material>=9.5",
