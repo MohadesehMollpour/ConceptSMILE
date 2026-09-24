@@ -1,76 +1,107 @@
-# Provenance: RECONSTRUCTED reusable code; historical execution not established.
-"""Attribution accuracy, F1, and AUROC with explicit external references."""
+"""ConceptSMILE attribution-accuracy metrics.
+
+Manuscript correspondence:
+    Eq. (11)
+    Metrics: Attribution Accuracy (ACC), F1, and AUROC
+
+The binary reference labels and attribution threshold must be supplied
+by the experiment. This module does not infer or optimise them.
+"""
 
 from __future__ import annotations
 
 from dataclasses import dataclass
 
 import numpy as np
-from sklearn.metrics import accuracy_score, f1_score, roc_auc_score, roc_curve
+from sklearn.metrics import accuracy_score, f1_score, roc_auc_score
 
 
 @dataclass(frozen=True)
 class AttributionMetrics:
+    """Attribution evaluation results."""
+
     accuracy: float
     f1: float
     auroc: float
     threshold: float
     n: int
-    status: str
 
 
 def evaluate_attribution(
     reference_labels: np.ndarray,
     attribution_scores: np.ndarray,
     *,
-    sample_weights: np.ndarray | None = None,
-    threshold: float | None = None,
+    threshold: float,
 ) -> AttributionMetrics:
-    """Evaluate scores against supplied binary reference labels.
+    """Evaluate attribution scores against binary reference labels.
 
-    When no threshold is supplied, the notebook's Youden-J selection is used on
-    the same sample. For confirmatory evaluation, determine the threshold on a
-    separate validation set and pass it explicitly. The function cannot verify
-    reference-label independence; the caller must document that provenance.
+    Parameters
+    ----------
+    reference_labels:
+        Binary reference labels y_j from Eq. (11).
+
+    attribution_scores:
+        Attribution scores for the corresponding concept elements.
+
+    threshold:
+        Attribution threshold tau used to convert continuous scores
+        into binary predicted attribution labels.
+
+    Returns
+    -------
+    AttributionMetrics
+        ACC, F1, AUROC, threshold, and number of evaluated elements.
     """
+
     labels = np.asarray(reference_labels).reshape(-1)
     scores = np.asarray(attribution_scores, dtype=float).reshape(-1)
-    if len(labels) != len(scores):
-        raise ValueError("reference_labels and attribution_scores must have equal length")
-    if not np.isin(labels, [0, 1]).all():
-        raise ValueError("reference_labels must be binary")
-    if not np.isfinite(scores).all():
-        raise ValueError("attribution_scores must be finite")
-    weights = (None if sample_weights is None
-               else np.asarray(sample_weights, dtype=float).reshape(-1))
-    if weights is not None and (len(weights) != len(labels) or not np.isfinite(weights).all()
-                                or (weights < 0).any() or weights.sum() <= 0):
-        raise ValueError("weights must be aligned, finite, nonnegative and have positive sum")
-    if not len(labels):
-        raise ValueError("reference_labels must be non-empty")
-    if threshold is not None and not np.isfinite(threshold):
-        raise ValueError("threshold must be finite")
-    if len(labels) < 2 or np.unique(labels).size < 2:
-        return AttributionMetrics(
-            float("nan"),
-            float("nan"),
-            float("nan"),
-            float("nan"),
-            len(labels),
-            "single_class_or_too_few_samples",
+
+    if labels.size == 0:
+        raise ValueError("reference_labels must be non-empty.")
+
+    if labels.shape != scores.shape:
+        raise ValueError(
+            "reference_labels and attribution_scores must have equal length."
         )
 
-    adaptive_threshold = threshold is None
-    auroc = float(roc_auc_score(labels, scores, sample_weight=weights))
-    if threshold is None:
-        false_positive, true_positive, thresholds = roc_curve(labels, scores, sample_weight=weights)
-        threshold = float(thresholds[int(np.argmax(true_positive - false_positive))])
-    predicted = (scores >= threshold).astype(int)
+    if not np.isin(labels, [0, 1]).all():
+        raise ValueError(
+            "reference_labels must contain only binary values 0 and 1."
+        )
+
+    if not np.isfinite(scores).all():
+        raise ValueError(
+            "attribution_scores must contain only finite values."
+        )
+
+    if not np.isfinite(threshold):
+        raise ValueError("threshold must be finite.")
+
+    predicted_labels = (scores >= threshold).astype(int)
+
+    accuracy = float(
+        accuracy_score(labels, predicted_labels)
+    )
+
+    f1 = float(
+        f1_score(
+            labels,
+            predicted_labels,
+            zero_division=0,
+        )
+    )
+
+    if np.unique(labels).size < 2:
+        auroc = float("nan")
+    else:
+        auroc = float(
+            roc_auc_score(labels, scores)
+        )
+
     return AttributionMetrics(
-        accuracy=float(accuracy_score(labels, predicted, sample_weight=weights)),
-        f1=float(f1_score(labels, predicted, sample_weight=weights, zero_division=0)),
+        accuracy=accuracy,
+        f1=f1,
         auroc=auroc,
         threshold=float(threshold),
         n=len(labels),
-        status="exploratory_same_sample_threshold" if adaptive_threshold else "ok",
     )
