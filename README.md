@@ -26,7 +26,7 @@ A perturbation-based approach to auditing concept-level explanation reliability:
 - The manuscript evaluation uses 40 retinal fundus images across HRF, APTOS 2019, ODIR-5K, and IDRiD, with 10 images from each dataset. The author-confirmed image identifiers are documented in the [evaluation image manifest](data/manifests/README.md) and provided in machine-readable form in [`paper_40_images.csv`](data/manifests/paper_40_images.csv).
 - [Tables 2–7](results/manuscript_transcribed/README.md) are MANUSCRIPT-TRANSCRIBED, not computed reproductions.
 - Historical MedSAM reference metrics mean **model-mask-reference agreement**. VLM attribution is a **self-referential, row-misaligned diagnostic**, not independent ground-truth accuracy. VLM Pearson uses global removed fraction, and legacy consistency measures R² dispersion. These limitations remain unresolved scientifically.
-- Stability, full VLM robustness, four-dataset row-level outputs and exact Figure9–11 provenance are incomplete. Table arithmetic/duplication concerns are documented in the [final scientific audit](docs/audits/final-scientific-audit.md).
+- Stability, full VLM robustness, four-dataset row-level outputs and exact Figures 9–11 provenance are incomplete. Table arithmetic/duplication concerns are documented in the [final scientific audit](docs/audits/final-scientific-audit.md).
 
 ## Install and check
 
