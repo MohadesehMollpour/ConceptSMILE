@@ -1,11 +1,36 @@
 # Reviewed manuscript
 
-**ConceptSMILE: Auditing the Trustworthiness of Concept-Based Explainable AI**.
+**ConceptSMILE: Auditing the Trustworthiness of Concept-Based Explainable AI**
 
-Reviewed file: `Moha___ConceptSMILE (1)(2).pdf`, 46 pages; SHA-256 `c4a9c68fe7ae240530a6db9a3509d4116d94cd59976fec259b6ec71d2d87d992`. Uploaded on 22 September 2026. This identifies the version audited; the PDF itself is not redistributed in this repository.
+Current manuscript reviewed for repository alignment:
 
-Page 1 confirms the six authors already listed in CITATION.cff and pyproject.toml. The repository URL has been corrected. No final journal/DOI metadata is established by this manuscript.
+- File: `Moha___ConceptSMILE (16).pdf`
+- Length: 49 pages
+- SHA-256: `9178fc53e22cc259142915264e9d52c8d7769c6aa8ec820b10057d743d90470c`
 
-Page 21 contains unresolved APTOS and ODIR citations. Page 40 still contains `[repository link]`; page 41 contains four `[add confirmed contributions]` placeholders. Authors must resolve these in the manuscript source. No contributions were invented and the supplied PDF has not been edited.
+The manuscript reports a 40-image retinal evaluation using 10 images from each
+of HRF, APTOS 2019, ODIR-5K, and IDRiD. The author-confirmed image identifiers
+are documented in `data/manifests/paper_40_images.csv`.
 
-Tables 2–7 are preserved as MANUSCRIPT-TRANSCRIBED CSVs. See the root traceability/readiness reports and `docs/audits/manuscript-review.md` for scientific discrepancies.
+The manuscript reports the ConceptSMILE protocol using:
+
+- three retinal concepts: lesion, blood vessels, and optic disc;
+- 50 unique binary superpixel perturbations per image;
+- SLIC superpixels with target segments = 7;
+- black masking of removed superpixels;
+- `facebook/dinov2-base` CLS-token embeddings;
+- cosine and Wasserstein distance;
+- exponential locality weighting;
+- a fixed structured JSON prompt for the VLM pathway; and
+- XGBoost as the local surrogate model.
+
+Tables 2–7 currently remain stored under `results/manuscript_transcribed/`
+as manuscript-reported values unless independently reproduced from preserved
+row-level experimental outputs.
+
+The repository URL reported in the manuscript is:
+
+`https://github.com/MohadesehMollpour/ConceptSMILE.git`
+
+The current manuscript contains the completed dataset citations, code
+availability statement, and author-contribution section.
