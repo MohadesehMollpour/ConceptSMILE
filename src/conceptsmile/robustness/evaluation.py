@@ -27,7 +27,6 @@ from dataclasses import dataclass
 import numpy as np
 from sklearn.metrics import r2_score
 
-
 CONTRAST_FACTORS = (
     0.6,
     0.8,
