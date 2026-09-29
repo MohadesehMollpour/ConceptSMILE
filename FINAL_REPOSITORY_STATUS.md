@@ -31,13 +31,20 @@ Several issues identified during the original repository audit have now been res
   notebooks from manuscript-aligned implementation material.
 - `notebooks/legacy/` remains explicitly identified as historical evidence rather than
   the final manuscript implementation.
+- The final manuscript Table 3 attribution evaluation used clinician reference
+  annotations provided by Mehran Hosseinalizadeh (optometrist), produced independently
+  of the model-generated outputs.
+- Repository documentation distinguishes the final Table 3 clinician-reference
+  evaluation from the exploratory model-derived/self-derived attribution calculations
+  retained in the legacy notebooks.
 - `CITATION.cff` lists all seven manuscript authors.
 - `pyproject.toml` lists all seven manuscript authors.
 - The manuscript dataset citations are completed.
 - The manuscript Code Availability statement contains the ConceptSMILE repository URL.
 - The manuscript Author Contributions section is completed.
 - Repository audit and reproducibility documentation has been updated to reflect the
-  availability of the 40-image manifest.
+  availability of the 40-image manifest and the clarified Table 3 clinician-reference
+  provenance.
 
 The manuscript-reported numerical tables remain labelled
 `MANUSCRIPT-TRANSCRIBED` where independent regeneration from final row-level outputs
@@ -49,7 +56,8 @@ The following issues remain unresolved and require genuine experimental records,
 verified implementation details, or an independently documented rerun rather than
 inferred or invented values:
 
-- independent attribution-reference provenance;
+- preservation of the final Table 3 clinician-annotation mappings and corresponding
+  row-level evaluation outputs where genuinely available;
 - correspondence between the final MedSAM implementation and the common manuscript
   protocol;
 - concept-specific VLM affected-region evidence;
@@ -70,6 +78,10 @@ inferred or invented values:
 - repeat counts and aggregation rules; and
 - a coherent final experimental environment record.
 
+The provenance of the final Table 3 reference labels is therefore no longer treated as
+unknown. The remaining Table 3 limitation concerns preservation and reproducibility of
+the corresponding final row-level annotation and evaluation records.
+
 Unknown settings should remain explicitly unknown until genuine evidence is recovered.
 
 See:
@@ -87,17 +99,18 @@ for detailed evidence-level analysis.
 The earlier dataset-citation, code-availability, and author-contribution placeholders
 have been resolved in the current manuscript.
 
-Several manuscript-level editorial or metadata corrections remain separate from the
-repository reproducibility issues:
+Several manuscript-level editorial or metadata corrections identified in the reviewed
+PDF remain separate from the repository reproducibility issues and should be checked
+against the latest manuscript before submission:
 
-- Mehran Hosseinalizadeh is marked with affiliation superscript `4`, but affiliation 4
-  is not currently printed in the title-page affiliation list;
-- `Vision language model provide` should be corrected to
-  `Vision–language models provide`;
-- the Section 5.2.6 heading `Attribution Fidelity` should be aligned with the
-  surrogate-fidelity terminology used in the section; and
-- `multiple segmentation models and vision–language model` should use the plural
-  `vision–language models`.
+- Mehran Hosseinalizadeh is marked with affiliation superscript `4`; the exact
+  affiliation presentation should match the verified author information;
+- the wording around vision-language models should be checked for grammatical
+  consistency;
+- the Section 5.2.6 heading should use terminology consistent with surrogate fidelity;
+  and
+- singular/plural usage of `vision-language model(s)` should be checked in the
+  Limitations section.
 
 These are manuscript editorial or metadata issues and should not be addressed by
 altering experimental evidence in the repository.
@@ -146,10 +159,14 @@ as part of the repository audit.
 The preserved historical notebooks remain under `notebooks/legacy/` and should not be
 modified simply to make their settings appear consistent with the final manuscript.
 
+The attribution calculations retained in those legacy notebooks should likewise not be
+relabelled as the final Table 3 clinician-reference implementation.
+
 Final manuscript implementation material should remain separate from the historical
 notebooks and should be clearly associated with:
 
 - the 40-image evaluation manifest;
+- clinician-reference mappings for Table 3 where available;
 - the resolved experiment configuration;
 - exact model/checkpoint information;
 - runtime/environment information;
@@ -197,9 +214,16 @@ independently established.
 
 The previous 40-image evaluation-subset gap is resolved.
 
+The provenance of the final Table 3 attribution reference labels is also clarified:
+clinician reference annotations were provided by Mehran Hosseinalizadeh (optometrist)
+independently of the model-generated outputs. The different attribution calculations
+retained in the legacy notebooks remain historical exploratory evidence and should not
+be treated as the source of the final Table 3 ground truth.
+
 The principal remaining scientific work concerns final implementation and result
 provenance: preserving genuine final experiment code, exact configuration information,
-row-level outputs, and the source data used to generate the reported tables and figures.
+row-level outputs, clinician-reference mappings where available, and the source data
+used to generate the reported tables and figures.
 
 Missing evidence should be recovered or regenerated through a clearly documented rerun.
 Historical notebooks or manuscript-transcribed values should not be altered merely to
