@@ -1,185 +1,98 @@
-# Final scientific audit
+# Scientific provenance
 
-**Repository release status: AMBER.** The repository is suitable as a transparent,
-limited research release under its existing rights statement. This status means that
-the repository clearly distinguishes manuscript-reported results, preserved historical
-material, reconstructed utilities, and evidence gaps. It does not by itself establish
-independent reproduction of every numerical result reported in the manuscript.
-The repository has since been
-updated to document the author-confirmed 40-image evaluation subset, align author
-metadata with the seven-author manuscript, distinguish the final manuscript
-implementation area from preserved legacy notebooks, and clarify the provenance
-of the clinician reference annotations used for the final Table 3 evaluation.
+Release scope: transparent research software and historical evidence record. This release does not by itself establish independent reproduction of all manuscript-reported results.
 
-No manuscript numerical result has been silently altered as part of these repository
-documentation updates.
+| Category | Meaning in this package |
+| --- | --- |
+| ORIGINAL | Authenticated original experiment artefact; originality is not established merely by presence in the repository |
+| PRESERVED | Historical source cells/plain-text outputs retained; notebook derivatives are explicitly sanitised |
+| RECONSTRUCTED | Reusable package utilities, input validation, audit scripts and tests; not original experimental execution |
+| RE-RUN | Software-only tests/audits performed now; no new retinal/model experiment |
+| MANUSCRIPT-TRANSCRIBED | Tables 2–7 and reported paper settings copied from the hashed PDF; no empirical reproduction implied |
+| UNVERIFIED | Attribution of a result to original data/code remains unresolved |
+| NOT AVAILABLE | Required artefact was not found among supplied materials |
 
-| Requested issue | Investigation / current outcome | Remaining evidence gap |
+## What the historical metrics mean
+
+The historical notebook calculations described below are preserved exploratory evidence.
+They should not automatically be interpreted as the implementations used to generate the
+final manuscript results.
+
+- **Final Table 3 clinician reference:** The final manuscript Table 3 evaluation used
+  clinician reference annotations provided by Mehran Hosseinalizadeh (optometrist),
+  produced independently of the model-generated outputs. These clinician reference
+  annotations define the ground-truth basis reported for the final attribution evaluation.
+
+- **Legacy VLM attribution:** Preserved VLM cells V12/18/23 contain a self-referential
+  response-shift diagnostic with a positional label-alignment issue. V12 creates
+  perturbation-major rows, while V18/23 generate labels in grouped concept order from
+  the 75th percentile of those same scores. This historical diagnostic is not the
+  clinician-reference evaluation used for the final Table 3 results.
+
+- **Legacy MedSAM attribution:** Preserved MedSAM cells M30/38 compare response-shift
+  scores with removal of at least 10% of an original model-predicted mask. This historical
+  calculation represents model-mask-reference agreement and is not the clinician-reference
+  evaluation used for the final Table 3 results.
+
+- **VLM faithfulness:** Pearson association between global removed-superpixel fraction
+  (V17) and absolute response shift (V25). The preserved historical implementation does
+  not establish the exact final manuscript concept-specific calculation.
+
+- **MedSAM faithfulness:** Historical calculations use the affected fraction of a
+  model-derived mask. Node p-values averaged in M42 do not, by themselves, establish the
+  final manuscript significance procedure.
+
+- **Legacy consistency:** Preserved historical cells quantify dispersion of repeated-split
+  R²/weighted R². No complete repeated concept-importance arrays corresponding to the
+  final manuscript consistency analysis have been recovered from the preserved notebooks.
+
+The reusable `evaluate_attribution` function accepts caller-provided reference labels.
+It therefore supports externally supplied clinician annotations, but the function alone
+does not establish the provenance of those labels.
+
+The final Table 3 clinician-reference provenance is author-confirmed: the annotations
+were provided by Mehran Hosseinalizadeh (optometrist) independently of the model-generated
+outputs. Where available, the corresponding clinician annotation records, keyed mappings,
+and row-level final evaluation outputs should be preserved separately from the legacy
+notebook calculations.
+
+## Preservation and sanitisation
+
+Original notebook bytes remain in the prior private repository/archive at commit
+`83a10462036a7b8de7ce356cf617a98d67357131`.
+
+This repository includes sanitised notebook derivatives under `notebooks/legacy/`.
+Source cells, execution counts, and plain-text numerical displays are preserved, while
+non-text output payloads, attachments, and widgets were removed from the sanitised
+notebook copies. Original/release hashes and removed locations are recorded in
+`docs/audits/preservation_manifest.csv`. No sanitised derivative is claimed to be
+byte-identical to its original notebook.
+
+The manuscript framework and result figures are included under `figures/` for
+documentation and traceability. Their inclusion does not establish independent
+redistribution rights or experimental reproduction. Some figures contain retinal-image
+content or other manuscript-derived graphical elements whose complete source provenance
+and redistribution permissions have not been independently verified. Figure-specific
+provenance limitations are documented in `figures/README.md`.
+
+The original saved notebook output index is retained as an index of the historical
+notebook outputs, not as a claim that removed MIME payloads remain in the repository.
+Exact original provenance cannot be independently authenticated solely from notebook
+metadata.
+
+## Model/software evidence recovered
+
+| Item | Evidence | Limits |
 | --- | --- | --- |
-| 1 VLM labels | Preserved VLM cells V12/18/23 contain same-score percentile labelling together with group/row-order concerns. These are historical exploratory calculations and are not the source of the final Table 3 ground truth. The final Table 3 evaluation used clinician reference annotations provided by Mehran Hosseinalizadeh (optometrist), produced independently of the model-generated outputs. | The preserved legacy VLM notebook does not itself contain the final clinician-reference implementation or establish the complete row-level provenance of the final Table 3 calculation. Final clinician annotation records and corresponding row-level evaluation outputs should be retained where genuinely available. |
-| 2 MedSAM references | Preserved MedSAM cells M10–12/30/38 use predicted/model-derived masks as references. These historical calculations are retained as exploratory evidence and should not be interpreted as the reference-label source for the final manuscript Table 3 evaluation. The final Table 3 evaluation used clinician reference annotations provided by Mehran Hosseinalizadeh (optometrist), produced independently of model-generated outputs. | The preserved legacy MedSAM notebook does not itself establish the final clinician-reference implementation or complete row-level provenance of Table 3. Final clinician annotation records and corresponding row-level evaluation outputs should be retained where genuinely available. |
-| 3 MedSAM legacy protocol | Preserved MedSAM code uses target 12 SLIC segments, six realised segments in the retained example, non-unique perturbation draws, zero-vector repair, black masking, and pooled MedSAM image embeddings. | The preserved legacy notebook is not the final manuscript implementation of the reported common target-7, unique-perturbation, DINOv2 protocol. It remains intentionally separated under `notebooks/legacy/`. |
-| 4 VLM faithfulness | Preserved VLM faithfulness code uses global removed fraction. Repository documentation now distinguishes this historical implementation from the manuscript-level concept-relevance description. | Final row-level evidence is required to establish the exact concept-specific calculation used for manuscript Table 4. |
-| 5 Consistency | Preserved historical cells M27/36/37 and V14/22 quantify variation in R²-type surrogate measures. | Row-level repeated concept-importance outputs supporting the manuscript consistency definition have not been established from the preserved notebooks. |
-| 6 Table 6 arithmetic | `table6_variance_sd_audit.csv` records all 48 displayed variance/SD pairs. The audit identifies one pair compatible with the strict printed-rounding interpretation, 43 potentially compatible under coarser rounding/aggregation assumptions, and four pairs requiring further source clarification. | The final aggregation rule and original repeated-score records remain necessary to interpret the displayed variance and SD values conclusively. |
-| 7 Table 4 provenance | `table4_value_traceability.csv` records 144 displayed values. Preserved ordinary Pearson code does not itself explain different cosine/Wasserstein correlation values. | Final row-level arrays, sample-selection logic, aggregation procedure, and significance calculation are still required for full provenance. |
-| 8 Cross-table values | Exact displayed scalar matches are recorded in `cross_table_exact_value_matches.csv`. Repeated values are treated as a traceability flag rather than proof of error. | Original result-generation and table-assembly records are required to determine whether repeated displayed values are intentional or mapping/copying artefacts. |
-| 9 Figure 9 target | Historical VLM cells include both confidence-based and shift-based surrogate targets; preserved MedSAM plotting uses shifts. | Final four-dataset Figure 9 source data are needed to establish the exact plotted target consistently across manuscript panels. |
-| 10 Robustness | Preserved MedSAM robustness cells M43/44 contain repeated contrast/occlusion evaluation logic. The preserved example uses an ODIR image, whereas the manuscript reports a representative HRF image. The retained VLM material does not contain a complete corresponding robustness driver. | Final HRF robustness image identity, row-level robustness outputs, and complete VLM robustness provenance remain to be documented from the final implementation/evidence. |
-| 11 Stability | Historical material was searched for the date/logo/Jaccard experiment. A generic Jaccard implementation is available, but the complete original stability experiment and explanation sets have not been recovered from the preserved notebooks. | Final Table 5 input explanation sets and experiment records remain required for independent reproduction. |
-| 12 Evaluation manifest | The author-confirmed 40-image evaluation subset is now documented in `data/manifests/paper_40_images.csv`, with 10 images each from HRF, APTOS 2019, ODIR-5K, and IDRiD. `configs/paper.yaml` links to this manifest. | The subset-identifier gap is resolved. Exact source filenames remain blank where they have not been independently verified, and the manifest alone does not establish complete historical execution provenance. |
-| 13 Models/software | Available metadata, historical version strings, checkpoint names, seeds, and configuration differences are documented where recoverable. Unknown paper-level settings remain `null` rather than being invented. | Final checkpoint hashes/revisions, complete historical environment, hardware details, and other unavailable execution settings remain unresolved unless genuine records are recovered. |
-| 14 Images/privacy | Historical retinal visualisations and plots were reviewed during the earlier audit. Source datasets are not redistributed in the repository, and current documentation directs users to obtain datasets independently. | Rights for any historical or third-party image material should not be presumed beyond documented sources. |
-| 15 Licence | The existing all-rights-reserved notice is retained. | A separate author decision is required before describing the repository as open source or granting broader software reuse rights. |
-| 16 Citation/authors | `CITATION.cff` and `pyproject.toml` now list all seven manuscript authors: Mohadeseh Mollapour, Koorosh Aslansefat, Zeinab Dehghani, Bhupesh Kumar Mishra, Tejal Shah, Zhibao Mian, and Mehran Hosseinalizadeh. | Final publication metadata such as journal citation, DOI, and publication date should be added only when confirmed. |
-| 17 Datasets | HRF, APTOS 2019, ODIR-5K, and IDRiD are documented together with provider/retrieval guidance. The repository does not redistribute the datasets. | Dataset acquisition and any annotation mapping remain external to the repository unless separately documented. |
-| 18 Security | Earlier current-tree scans found no confirmed credential secret in the reviewed package. | This is not equivalent to a complete Git-history security audit. Repository history should be reviewed separately before any visibility change. |
-| 19 Code | Reusable reconstructed utilities include perturbation, locality, surrogate, and metric functionality with defensive validation for invalid/degenerate inputs. | Model-heavy four-dataset execution has not been independently rerun as part of this audit. |
-| 20 Structure | Repository structure separates reconstructed source utilities, preserved legacy notebooks, manuscript-transcribed results, audit records, and a dedicated `notebooks/final/` area for the final manuscript implementation. | Final implementation notebooks and final experimental outputs should be added only when genuinely verified against the manuscript experiments. |
-| 21 README | The root README now documents the 40-image manifest, legacy/final notebook distinction, repository scope, evidence meaning, and scientific limitations. | README claims should continue to be updated only when supporting evidence is added. |
-| 22 Reproducibility | The repository does not claim that legacy notebooks reproduce the complete paper end-to-end. Manuscript-reported values remain clearly labelled where independent reproduction has not been established. The final Table 3 clinician-reference provenance is explicitly distinguished from the exploratory attribution calculations retained in the legacy notebooks. | A complete final implementation plus row-level outputs, model/configuration records, clinician-reference mappings where available, and figure/table generation inputs are still needed for full end-to-end reproduction. |
+| Python | Both `language_info` metadata records report Python 3.12.12 | Metadata, not a recovered full environment |
+| PyTorch | M2 saved output reports PyTorch 2.8.0+cu126 and CUDA available `True` | CUDA build tag does not establish driver or hardware version |
+| Hardware | V metadata reports accelerator `nvidiaTeslaT4` but `isGpuEnabled false`; M metadata reports no accelerator/GPU despite CUDA output | Contradictory metadata/output; actual historical hardware UNVERIFIED |
+| MedSAM | M3 records checkpoint filenames `sam_vit_b_01ec64.pth` and `medsam_vit_b.pth`, Zenodo record 10689643; M5 reports zero missing/unexpected keys | Exact downloaded bytes, hash, and repository revision NOT AVAILABLE |
+| Qwen | V3 records `Qwen2_5_VL` class, local directory `qwen25vl_3b_local`, float16, `device_map=auto`, and local processor | Exact model/tokenizer revision NOT AVAILABLE; directory name is not an authenticated model identifier |
+| DINOv2 | V10 records `facebook/dinov2-base` and CLS extraction | Revision/checksum NOT AVAILABLE; M locality uses its image encoder rather than DINOv2 |
+| Seeds | V8 uses `default_rng(42)`; M16 uses seed 42; repeated split cells use `42 + repeat`; M10 uses `random.seed(0)` for heuristic seed selection | Distinct stages use different seeds; there is no verified single universal paper seed |
+| Packages | M2 requests OpenCV 4.9.0.80; V0/1/2 contain conflicting moving/pinned Transformers installation steps | No coherent historical lockfile; installation commands do not prove final resolved package versions |
 
-## Table 6 interpretation
-
-The arithmetic audit uses the scale factors printed in the manuscript:
-variance ×10^-4 and standard deviation ×10^-3.
-
-The strict diagnostic checks whether each displayed variance/SD pair could represent
-the same underlying repeated-score distribution within the precision implied by the
-printed values. A secondary diagnostic considers whether coarser rounding or separate
-aggregation could explain additional pairs.
-
-These diagnostics are **not proposed corrections to the manuscript values**.
-
-The remaining discrepancies must be interpreted using the actual aggregation procedure
-and source repeated-score records. In particular, averaging variances and standard
-deviations separately across images, concepts, or repeated runs can break the simple
-display-level relationship `SD = sqrt(variance)`. The repository therefore records the
-issue without automatically changing the manuscript values.
-
-## Current manuscript and repository alignment
-
-The following earlier completion issues have now been resolved:
-
-- the manuscript identifies all four retinal datasets with citations;
-- the Code Availability section contains the ConceptSMILE repository URL;
-- the Author Contributions section is completed;
-- the author-confirmed 40-image evaluation subset is documented in
-  `data/manifests/paper_40_images.csv`;
-- `configs/paper.yaml` links to the evaluation manifest;
-- the final Table 3 evaluation is documented as using clinician reference annotations
-  provided by Mehran Hosseinalizadeh (optometrist), produced independently of the
-  model-generated outputs;
-- the repository distinguishes those final clinician reference annotations from the
-  exploratory model-derived/self-derived attribution calculations preserved in the
-  legacy notebooks;
-- `CITATION.cff` lists all seven manuscript authors;
-- `pyproject.toml` lists all seven manuscript authors; and
-- the root README documents the current manifest and separates historical notebooks
-  from the final manuscript implementation area.
-
-The following manuscript/editorial items remain visible in the current reviewed PDF
-and should be resolved in the manuscript itself rather than by altering repository
-evidence:
-
-1. Mehran Hosseinalizadeh is marked with affiliation superscript `4`, but affiliation 4
-   is not printed in the title-page affiliation list. Add the verified affiliation only
-   when its exact wording is confirmed.
-
-2. Section 2.3 contains:
-   `Vision language model provide`
-   and should be grammatically corrected to:
-   `Vision–language models provide`.
-
-3. Section 5.2.6 is titled `Attribution Fidelity`, although the section itself discusses
-   surrogate fidelity. The heading should be aligned with the terminology used in the
-   section.
-
-4. The Limitations section contains:
-   `multiple segmentation models and vision–language model`
-   and should use the plural:
-   `multiple segmentation models and vision–language models`.
-
-These are manuscript-language or metadata corrections; they do not require changes to
-the reported numerical results.
-
-## Evidence still required for complete reproduction
-
-The author-confirmed image manifest resolves the earlier uncertainty about which
-40 image identifiers belong to the manuscript evaluation. The confirmed clinician
-reference provenance also clarifies how the final Table 3 ground truth should be
-interpreted. Neither point, by itself, resolves the remaining result-provenance
-questions for the complete experimental pipeline.
-
-For complete end-to-end reproducibility, the repository should eventually contain or
-document, where genuinely available:
-
-- the final manuscript implementation for both MedSAM and VLM pathways;
-- final preprocessing details;
-- exact model/checkpoint revisions or hashes;
-- final locality kernel widths and any distance normalisation;
-- final XGBoost hyperparameters;
-- train/test or validation split procedure;
-- repeat counts and aggregation rules;
-- final row-level outputs for the four datasets;
-- final clinician-reference annotation mappings supporting Table 3, where available;
-- final source records supporting Tables 2–7;
-- Figure 9 plotting inputs and target definition;
-- Table 5 stability explanation sets/results;
-- Table 6 repeated concept-importance records;
-- Figures 10–11 robustness inputs and the exact HRF robustness image identifier; and
-- complete environment information sufficient to rerun the final experiments.
-
-Unknown values should remain explicitly unknown rather than being inferred from the
-legacy notebooks.
-
-## Required repository resolution order
-
-1. Preserve `data/manifests/paper_40_images.csv` as the canonical author-confirmed
-   manuscript evaluation subset.
-
-2. Preserve `notebooks/legacy/` unchanged as historical evidence.
-
-3. Preserve the distinction between the final Table 3 clinician-reference evaluation
-   and the exploratory model-derived/self-derived attribution calculations retained
-   in the legacy notebooks.
-
-4. Keep the final manuscript implementation separate under `notebooks/final/`.
-
-5. Add final implementation code only when it genuinely corresponds to the protocol
-   reported in the manuscript.
-
-6. Add final row-level outputs, clinician-reference mappings, and table/figure source
-   data only when they are genuine experimental records.
-
-7. Record final checkpoint revisions, preprocessing settings, locality parameters,
-   surrogate settings, split procedures, repeat counts, and aggregation procedures
-   where those values can be verified.
-
-8. Update traceability and audit documents when supporting evidence is added.
-
-9. Do not relabel legacy exploratory outputs as final manuscript evidence merely because
-   they resemble manuscript results.
-
-10. Keep manuscript-transcribed tables labelled `MANUSCRIPT-TRANSCRIBED` unless they
-    are independently regenerated from the verified final implementation and corresponding
-    experiment records.
-
-## Current conclusion
-
-The repository is **AMBER** because it now provides substantially clearer documentation,
-an author-confirmed 40-image evaluation manifest, clarified clinician-reference provenance
-for the final Table 3 evaluation, aligned seven-author metadata, separation of legacy
-and final implementation areas, manuscript-transcribed result records, and explicit
-provenance categories.
-
-The earlier 40-image subset-identifier gap is resolved. The interpretation of the final
-Table 3 reference labels is also clarified: clinician reference annotations were
-provided by Mehran Hosseinalizadeh (optometrist) independently of the model-generated
-outputs, while the different attribution calculations retained in the legacy notebooks
-remain historical exploratory evidence.
-
-The remaining AMBER status concerns reproducibility and provenance of the complete
-final experimental pipeline and numerical/figure source records. These gaps should be
-resolved by preserving or adding genuine final implementation and experimental evidence,
-not by modifying legacy notebooks or inventing missing configuration values.
+Legacy settings remain separate from `configs/paper.yaml`. Missing values remain `null`.
+Candidate model dependencies are not presented as a validated historical execution
+environment.
