@@ -23,10 +23,18 @@ This repository provides the implementation, historical evidence, evaluation uti
 ## Evidence you can inspect
 
 - MedSAM and Qwen2.5-VL notebooks each demonstrate one image from an ODIR mirror. Source cells and plain-text outputs are preserved; embedded visuals/rich displays are removed with an [audit trail](docs/audits/preservation_manifest.csv).
+
 - The manuscript evaluation uses 40 retinal fundus images across HRF, APTOS 2019, ODIR-5K, and IDRiD, with 10 images from each dataset. The author-confirmed image identifiers are documented in the [evaluation image manifest](data/manifests/README.md) and provided in machine-readable form in [`paper_40_images.csv`](data/manifests/paper_40_images.csv).
+
 - [Tables 2–7](results/manuscript_transcribed/README.md) are MANUSCRIPT-TRANSCRIBED, not computed reproductions.
-- Historical MedSAM reference metrics mean **model-mask-reference agreement**. VLM attribution is a **self-referential, row-misaligned diagnostic**, not independent ground-truth accuracy. VLM Pearson uses global removed fraction, and legacy consistency measures R² dispersion. These limitations remain unresolved scientifically.
-- Stability, full VLM robustness, four-dataset row-level outputs and exact Figures 9–11 provenance are incomplete. Table arithmetic/duplication concerns are documented in the [final scientific audit](docs/audits/final-scientific-audit.md).
+
+- The final manuscript Table 3 attribution evaluation used clinician reference annotations provided by Mehran Hosseinalizadeh (optometrist), produced independently of the model-generated outputs.
+
+- The preserved legacy attribution notebooks contain different exploratory calculations: historical MedSAM attribution uses model-mask-reference agreement, while historical VLM attribution contains a self-referential, row-alignment-limited diagnostic. These legacy calculations are retained for transparency and should not be interpreted as the source of the final Table 3 clinician-reference evaluation.
+
+- Historical VLM Pearson calculations use global removed fraction, and legacy consistency calculations measure R² dispersion. These preserved calculations do not by themselves establish the exact final manuscript implementations.
+
+- Stability, full VLM robustness, four-dataset row-level outputs and exact Figures 9–11 provenance remain incomplete. Table arithmetic and cross-table value traceability are documented in the [final scientific audit](docs/audits/final-scientific-audit.md).
 
 ## Install and check
 
