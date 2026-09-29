@@ -57,7 +57,7 @@ does not, by itself, establish complete historical execution provenance.
 | Wasserstein locality | M34 and V20 use one-dimensional Wasserstein comparison over embedding components and historical min-max scaling | `wasserstein_embedding_distance` and locality-weight helpers | §4.3 | AMBER: historical normalisation/kernel-width details are not fully specified by the manuscript |
 | Locality kernel | Historical implementations include exponential distance weighting but with pathway-specific operational settings | `configs/paper.yaml` records manuscript equation `exp(-(distance**2)/(sigma**2))` | Eq.9, §4.3 | AMBER: broad formulation corresponds; exact final widths/normalisation remain unresolved |
 | XGBoost surrogate | M27/M36/M45 and V14/V22/V27 contain XGBoost surrogate fitting; historical repeats use split seeds based on 42+repeat and test fraction 0.30 | `surrogate/xgboost_surrogate.py` and `metrics/fidelity.py` | Eq.10, §4.3 | AMBER: single-image historical evidence exists; final four-dataset hyperparameters and split procedure are not fully established |
-| Attribution ACC/F1/AUROC | M30/M38 derive labels from affected fractions of original model-predicted masks; V18/V23 derive labels from the same response-shift scores and contain a positional alignment issue | `metrics/attribution.py` accepts supplied labels | Table 3, pp.25–26 | RED for historical empirical interpretation: preserved references are not independent expert ground truth |
+| Attribution ACC/F1/AUROC | Legacy MedSAM and VLM notebooks contain exploratory model-derived/self-derived reference-label calculations and should not be treated as the final Table 3 implementation. | The final manuscript Table 3 evaluation used clinician reference annotations provided by Mehran Hosseinalizadeh (optometrist), produced independently of the model-generated outputs. `metrics/attribution.py` accepts externally supplied reference labels. | Table 3, pp.25–26 | Clinician-referenced final evaluation; legacy notebook attribution calculations are retained separately as historical exploratory evidence and do not define the final Table 3 reference labels. |
 | Pearson faithfulness | M42 uses affected fraction of model-predicted masks; V17/V25 use overall removed-superpixel fraction | `metrics/faithfulness.py` | Table 4, p.27 | RED if historical VLM calculation is interpreted as concept-specific evidence removal; exact final Table 4 provenance remains incomplete |
 | Stability / date and logo | No complete preserved date/logo experiment was located | `metrics/stability.py` provides a generic Jaccard helper | Table 5, p.29 | RED for reproduction: helper alone does not reproduce the manuscript artefact study |
 | Consistency | M27/M36/M37 and V14/V22 report variance/SD of repeated R²-type surrogate metrics | `metrics/consistency.py` provides generic sample-statistics helpers | Table 6, p.31 | RED for historical correspondence: repeated concept-importance records supporting manuscript Eqs.18–19 have not been recovered |
@@ -75,12 +75,17 @@ then assign the resulting label sequence positionally to the original frame.
 This introduces a row-alignment problem in addition to the self-referential nature of
 the historical VLM attribution reference.
 
-Therefore, saved historical AUROC values must not be interpreted as resolving the
-reference-definition problem.
+Therefore, saved historical AUROC values from these legacy notebook calculations must
+not be interpreted as the source of the final manuscript Table 3 clinician-referenced
+evaluation.
 
-The historical notebook cells remain preserved unchanged. Any new attribution
-evaluation should use independently justified reference labels with explicit keyed row
-alignment.
+The final Table 3 attribution evaluation used clinician reference annotations provided
+by Mehran Hosseinalizadeh (optometrist), produced independently of the model-generated
+outputs. The historical notebook cells remain preserved unchanged as exploratory
+evidence and should not be relabelled as the final Table 3 implementation.
+
+Any future attribution implementation should preserve explicit keyed alignment between
+the clinician reference labels and the corresponding evaluated regions or concepts.
 
 ## Publication result register
 
@@ -88,7 +93,7 @@ alignment.
 | --- | --- | --- | --- |
 | Table 1 | §4.5, p.21; experimental protocol and reproducibility settings | `configs/paper.yaml`; author-confirmed `data/manifests/paper_40_images.csv`; legacy notebooks contain conflicting historical settings | MANUSCRIPT-TRANSCRIBED protocol; 40-image identifiers now documented; complete execution not independently verified |
 | Table 2 | §5.2.1, p.24; surrogate/locality comparison | M45/V27 contain single-image surrogate comparisons that do not establish the four-dataset aggregate table | CSV remains MANUSCRIPT-TRANSCRIBED; original aggregate result bundle not recovered |
-| Table 3 | §5.2.2, pp.25–26; concept-level attribution accuracy | M30/M31/M38/M39 and V18/V23 contain historical attribution calculations with reference/alignment limitations | CSV MANUSCRIPT-TRANSCRIBED; independent empirical reproduction not established |
+| Table 3 | §5.2.2, pp.25–26; concept-level attribution accuracy | Author-confirmed final evaluation used clinician reference annotations provided by Mehran Hosseinalizadeh (optometrist), independently of model-generated outputs. Legacy M30/M31/M38/M39 and V18/V23 calculations are historical exploratory implementations and are not the final Table 3 reference-label source. | Clinician-reference provenance confirmed by the authors; manuscript CSV remains MANUSCRIPT-TRANSCRIBED unless the corresponding row-level final evaluation records are separately preserved in the repository. |
 | Table 4 | §5.2.3, p.27; faithfulness | M42/V25 contain historical Pearson calculations; preserved code does not establish the reported locality-dependent aggregate table | CSV MANUSCRIPT-TRANSCRIBED; final sample/aggregation/p-value provenance unresolved |
 | Table 5 | §5.2.4, p.29; date/logo stability | Generic Jaccard helper exists; original explanation sets and complete experiment not recovered | CSV MANUSCRIPT-TRANSCRIBED; empirical reproduction not established |
 | Table 6 | §5.2.5, p.31; repeated-run consistency | Historical notebooks contain R²-dispersion statistics rather than clearly documented repeated concept-importance arrays | CSV MANUSCRIPT-TRANSCRIBED with displayed scaling; final aggregation/source records unresolved |
