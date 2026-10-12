@@ -1,36 +1,55 @@
-# Reviewed manuscript
 
-**ConceptSMILE: Auditing the Trustworthiness of Concept-Based Explainable AI**
+# Reviewed ConceptSMILE Manuscript
 
-Current manuscript reviewed for repository alignment:
+## Manuscript title
 
-- File: `Moha___ConceptSMILE (16).pdf`
+ConceptSMILE for Evaluating the Reliability of Concept Based Explainable Artificial Intelligence
+
+## Latest manuscript
+
+- File: `Moha___ConceptSMILE (6)(1).pdf`
 - Length: 49 pages
-- SHA-256: `9178fc53e22cc259142915264e9d52c8d7769c6aa8ec820b10057d743d90470c`
+- SHA-256: `a190164f2e40623283744e53a3860f407f9e110d4688eed1c6d25a660bd4464d`
 
-The manuscript reports a 40-image retinal evaluation using 10 images from each
-of HRF, APTOS 2019, ODIR-5K, and IDRiD. The author-confirmed image identifiers
-are documented in `data/manifests/paper_40_images.csv`.
+## Experimental evaluation
 
-The manuscript reports the ConceptSMILE protocol using:
+The manuscript reports a controlled evaluation involving:
 
-- three retinal concepts: lesion, blood vessels, and optic disc;
-- 50 unique binary superpixel perturbations per image;
-- SLIC superpixels with target segments = 7;
-- black masking of removed superpixels;
-- `facebook/dinov2-base` CLS-token embeddings;
-- cosine and Wasserstein distance;
-- exponential locality weighting;
-- a fixed structured JSON prompt for the VLM pathway; and
-- XGBoost as the local surrogate model.
+- Four retinal datasets: HRF, APTOS 2019, ODIR-5K, and IDRiD.
+- 40 fundus images, with 10 images from each dataset.
+- Three retinal concepts: lesion, blood vessels, and optic disc.
+- Two concept-extraction pathways: MedSAM and Qwen2.5-VL.
+- 50 unique binary superpixel perturbations per image.
+- SLIC superpixels with target segments = 7.
+- Black masking of removed superpixels.
+- DINOv2 CLS-token embeddings for locality computation.
+- Cosine and Wasserstein locality weighting.
+- XGBoost surrogate modelling.
 
-Tables 2–7 currently remain stored under `results/manuscript_transcribed/`
-as manuscript-reported values unless independently reproduced from preserved
-row-level experimental outputs.
+These are manuscript-reported settings, not a claim that all experiments have been independently reproduced.
 
-The repository URL reported in the manuscript is:
+## Results and provenance
 
-`https://github.com/MohadesehMollpour/ConceptSMILE.git`
+Tables 2–7 are available in:
 
-The current manuscript contains the completed dataset citations, code
-availability statement, and author-contribution section.
+`results/manuscript_transcribed/`
+
+Tables 3, 6, and 7 were synchronised with the revised manuscript using `Moha___ConceptSMILE (4)(5).pdf`, SHA-256:
+
+`fe0dd95e208c25c4676413851fa97a995aba846b844f51b87ea0daa69ef9e460`
+
+Their reported table values have also been checked against the latest manuscript listed above.
+
+Tables 2, 4, and 5 retain their earlier manuscript-source records pending metadata synchronisation.
+
+The CSV tables are manuscript transcriptions, not independently regenerated experimental results. Historical notebooks and reproducibility limitations are documented separately.
+
+## Code availability
+
+The associated code, preserved experimental materials, manuscript-reported results, and reproducibility documentation are available at:
+
+https://github.com/MohadesehMollpour/ConceptSMILE
+
+## Reproducibility statement
+
+This repository distinguishes historical experimental evidence from reconstructed reusable implementations and documents remaining reproducibility limitations.
