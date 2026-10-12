@@ -1,60 +1,59 @@
-# Manuscript-transcribed tables
 
-Provenance: `MANUSCRIPT-TRANSCRIBED`.
+# Manuscript-Transcribed Results
 
-Source manuscript:
+## Provenance
 
-- `Moha___ConceptSMILE (16).pdf`
-- 49 pages
-- SHA-256: `9178fc53e22cc259142915264e9d52c8d7769c6aa8ec820b10057d743d90470c`
+All results in this directory are labelled `MANUSCRIPT-TRANSCRIBED`.
 
-Tables 2–7 were transcribed from the current reviewed manuscript and checked against
-the rendered pages.
+They represent numerical values reported in the ConceptSMILE manuscript, not independently reproduced experimental results.
 
-Current table locations are:
+## Latest reviewed manuscript
 
-- Table 2: p.24
-- Table 3: p.26
-- Table 4: p.27
-- Table 5: p.29
-- Table 6: p.31
-- Table 7: p.34
+- Title: ConceptSMILE for Evaluating the Reliability of Concept Based Explainable Artificial Intelligence
+- File: `Moha___ConceptSMILE (6)(1).pdf`
+- Pages: 49
+- SHA-256: `a190164f2e40623283744e53a3860f407f9e110d4688eed1c6d25a660bd4464d`
 
-Values are preserved at the precision displayed in the manuscript, including values
-flagged elsewhere for provenance or arithmetic review.
+## Results synchronisation
 
-These files are **not original raw experimental outputs** and are **not computational
-reproductions** of the reported experiments.
+Tables 3, 6, and 7 were synchronised with the revised manuscript version:
 
-Table 6 retains the manuscript's printed scale factors:
+- File: `Moha___ConceptSMILE (4)(5).pdf`
+- SHA-256: `fe0dd95e208c25c4676413851fa97a995aba846b844f51b87ea0daa69ef9e460`
 
-- variance ×10^-4
-- standard deviation ×10^-3
+The displayed table values were also checked against the latest reviewed manuscript listed above.
 
-The repository does not silently alter displayed variance/standard-deviation pairs.
-Any interpretation of those values must use the documented aggregation procedure and
-source repeated-run records when available.
+Tables 2, 4, and 5 retain their earlier source-file metadata pending synchronisation.
 
-For Table 4, a displayed value such as `p = 0.0000` is retained as the manuscript's
-rounded presentation and should not be interpreted as proof that the underlying
-probability is exactly zero.
+## Table locations
 
-Table 5 retains both MedSAM and VLM pathway values as presented in the manuscript.
+Printed page numbers in the latest 49-page manuscript:
 
-Aggregation units, per-statistic sample sizes, and underlying row-level experimental
-inputs remain unresolved where they have not been independently recovered.
+- Table 2: Page 25, surrogate model comparison
+- Table 3: Page 26, attribution accuracy
+- Table 4: Page 28, faithfulness
+- Table 5: Page 30, stability
+- Table 6: Page 32, consistency
+- Table 7: Page 35, surrogate fidelity
 
-No point-level coordinates were reconstructed or invented from Figures 9–11.
+## Scientific interpretation
 
-Figure source-data requirements and remaining provenance gaps are documented in:
+Values are preserved at the precision reported in the manuscript.
+
+Table 6 reports variance and standard deviation with scale factors of 10^-4 and 10^-3, respectively. The aggregation procedure and underlying repeated-run records must be considered when interpreting these statistics.
+
+Reported numerical values have not all been independently reconstructed from raw experimental data.
+
+For Table 4, values displayed as `p = 0.0000` reflect rounding and do not mean that the underlying p-value is exactly zero.
+
+No point-level coordinates have been reconstructed from Figures 9–11.
+
+## Reproducibility documentation
+
+Further information on experimental provenance, implementation differences, and remaining limitations is available in:
 
 - `MANUSCRIPT_CODE_TRACEABILITY.md`
 - `docs/audits/manuscript-review.md`
 - `docs/audits/final-scientific-audit.md`
 
-A script that reads, checks, or prints these manuscript-transcribed values must not be
-described as reproducing the underlying retinal experiments.
-
-These tables should remain labelled `MANUSCRIPT-TRANSCRIBED` unless they are
-independently regenerated from a verified final implementation and corresponding
-experimental records.
+Manuscript-transcribed results must not be described as computationally reproduced results unless independently verified against the original experimental records.
