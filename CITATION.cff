@@ -1,8 +1,7 @@
 cff-version: 1.2.0
 message: "If you use ConceptSMILE, please cite the associated paper. Publication details are pending."
 type: software
-title: "ConceptSMILE: Auditing the Trustworthiness of Concept-Based Explainable AI"
-
+title: "ConceptSMILE for Evaluating the Reliability of Concept Based Explainable Artificial Intelligence"
 authors:
   - family-names: Mollapour
     given-names: Mohadeseh
